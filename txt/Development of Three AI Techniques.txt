@@ -1,0 +1,19 @@
+As celulas em A* sabem apenas o custo para passar por elas e o custo dela ate a celula destinho. Em um sistema com poucas celulas cada celula poderia saber a menor distancia para todas as celulas, eliminando a necessidade de calcular o caminho, para isso ser possivel cada celula teria que ter um estrutura com o array com todas as outras celulas e qual direcao esta o menor caminho.
+O calculo de menor caminho seria realizado ao carregar o mapa e adicionado a cada celula, nao durante outros processamentos.
+A estrutura de celulas poderia ser como:
+
+struct pathNode
+{
+// the position of the node on the map
+int x , y ;
+// the global unique identifier of the node
+int inde x ;
+// the list contaning all the other nodes
+// and what of the nonconnected nodes is the
+// shortest path to each node
+int * list [ 2 ] ;
+// the connec ted nodes
+pathNode * nodes [ ] ;
+};
+
+O unico problema com esta tequinica seria o uso de memoria O(N^2) entretanto a implementacao funciona perfeitamente para um numero de celulas pequeno, normalmente utilizada em conjunto com a tequinca de waypoints.

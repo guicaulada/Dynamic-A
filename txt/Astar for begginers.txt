@@ -1,0 +1,26 @@
+O algoritmo A* pode ser utilizado para qualquer tipo de area retangulos, hexagonos, triangulos, qualquer formato.
+A maioria dos algoritmos simplificam a area de busca em quadrados por serem mais simples.
+
+A busca no algoritmo se inicia da seguinte maneira:
+
+1. A busca se inicia no ponto inicial, adicionando-o a uma lista de celulas abertas que precisam ser consideradas.
+2. Busca em todas as celulas adjacentes que sao validas e as adiciona a lista de celulas abertas salvando para cada uma destas celulas sua celula parente.
+3. Remove a celula inicial da lista de celulas abertas e a adiciona em uma lista de celulas fechadas, ja consideradas.
+
+Escolhemos a celula da lista que possui o menor valor da soma do custo para se mover ate la da celula inicial com o custo estimado ate a celula destino.
+O caminho e gerado iterando sobre a lista de celulas abertas repetidamente e escolhendo sempre a celula com a menor soma.
+Nos atribuimos a cada celula e movimento um custo normalmente 10 para movimentos horizontais e verticais e 14 para movimentos diagonais, esta simplificacao se da devido a distancia para se mover diagonalmente ser 1.414 vezes maior do que a distancia para se mover horizontal ou verticalmente, entretanto isso so se aplica a areas de busca divididas em quadrados, mas a mesma ideia pode ser aplicada para outras formas geometricas.
+Para calcular o custo do movimento ate uma celula, somamos ao custo do movimento ate sua celula parente o custo do movimento para a nova celula.
+Para calcular o custo do movimento ate a celula destino existem muitos metodos, o mais utilizado e que sera utilizado no projeto e chamado de metodo Manhattan, aonde se calcula o numero de celulas de custo mais baixo ate a celula destino e entao multiplica-se este valor pelo custo do movimento para estas celulas.
+
+Ou seja para continuar a busca:
+
+4. Remove a celula da lista de celulas abertas e a adiciona na lista de celulas fechadas.
+5. Checa todas as celulas ajacentes que sao validasm, adiciona-as a lista de celulas abertas e define a celula atual como parente das celulas adicionadas.
+6. Se uma celula adjacente ja esta na lista de celulas abertas, verifica-se se esta celula possui um custo menor ate a celula destino a partir da celula atual.
+7. Se a celula possui um menor custo, mudamos o a celula parente da celula adjacente para a celula atual e recalcula-se o custo para chegar ate esta celula. Caso o custo seja maior, a ignoramos.
+8. Paramos ao adicionar a celula destino para a lista de celulas fechadas.
+
+Para determinar o caminho final, iniciamos na celula destino e movemos para a celula parente da celula atual ate chegarmos na celula inicial.
+
+Outras consideracoes: colisao de elementos, terreno variavel, areas nao exploradas, caminhos naturais, areas de busca nao quadradas.

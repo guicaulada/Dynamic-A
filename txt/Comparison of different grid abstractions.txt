@@ -1,0 +1,2 @@
+Estudos neste artigo concluem que a busca tem um tempo menor e uma profundidade menor quanto mais vizinhos as celulas tiverem.
+Por exemplo, levaria mais tempo para se encontrar a solucao em uma grid quadrada do que octogonal.

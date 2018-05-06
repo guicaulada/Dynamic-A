@@ -1,0 +1,6 @@
+Encontrar o menor caminho em qualquer angulo e um problema comum em jogos e robotica. Isso requer encontrar o menor caminho euclideano entre dois pontos em uma grade.
+Diferentes implementacoes do A* possuem pre-processamento, poucos realizam o processamento em tempo real.
+Jogos exigem com que o caminho das entidades nao estejam presos a grade.
+Um metodo chamado String Pulling feito como pos-processamento, tem o papel de deixar o caminho mais natural.
+  Requer mais processamento, e retorna menor caminhos aproximados.
+Anya: um algoritmo A* que divide as colunas e linhas em conjuntos de celulas transversiveis, criando grandes diagonais entre celulas diferentes.

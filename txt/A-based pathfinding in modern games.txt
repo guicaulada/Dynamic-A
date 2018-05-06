@@ -1,0 +1,19 @@
+Achar o menor caminho e um dos maiores problemas da interligencia artificial na industria de jogos.
+Entre todos os algoritmos desenvolvidos A* e o melhor e mais popular de todos eles, e tem sido cada vez mais optimizado para aumentar sua eficiencia.
+A forma como o algoritmo e aplicado depende da forma como o jogo e representado.
+
+Optimizacoes:
+  Espaco de busca pode ser simplificados em grades retangulares, arvores de quadrados, poligonos, pontos de visibilidade, cilindros, etc..
+  A* Hierarquico (HPA*) adiciona um nivel de abstracao ao codigo, computando partes do caminho mais complexas separadamente, e entao computando o caminho entre elas.
+  NavMeshes descreve um grupo de poligonos que simplificam a area de busca.
+  Waypoints divide a area de busca em pontos que atuam como celulas.
+  
+  O algoritmo A* introduz uma aproximacao heuristica ao algoritmo de dijkstra, ou seja a funcao que calcula a estimativa do custo de qualquer celula para a celula destino, por causa desta funcao o algoritmo A* seleciona apenas celulas que estao na direcao da celula destino para serem analisadas, ao contrario do dijkstra que analisa todas as celulas.
+  A velocidade do algoritmo depende desta funcao heuristica. Sem ela todas as celulas seriam analisadas, uma heuristica que overstima a distancia para o destino pode ser benefico, fazendo com que menos celulas sejam analisadas, entretanto nao ha uma resposta exata de quanto deve ser overestimado.
+  
+  Um algoritmo complexo como o A* utiliza bastante recursos, a melhor maneira de previnir o uso abusivo de memoria seria definir um banco de celulas inicial, computar o caminho em pequenas partes e definir um custo maximo para o caminho, este metodo e chamado de A* Profundo Iterativo (IDA*).
+  Ao ser inicializado do banco de celulas, uma celula precisa ser amarzenada em algum lugar, uma estrutura deve ser definida para armazenar estes dados de forma que possam ser acessados rapidamente, como uma heap binaria.
+  Existe pouco trabalho que implementa a lista de celulas abertas e fechadas mais eficientemente.
+  
+Apesar de ser um algoritmo facil de compreender, a implementacao do A* em um jogo nao e algo trivial. A quantidade de unidades que devem calcular o menor caminho tem grande impacto na CPU e Memoria.
+O algoritmo e melhor aplicado para um numero menor de unidades.
