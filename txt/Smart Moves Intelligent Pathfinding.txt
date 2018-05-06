@@ -1,0 +1,38 @@
+Um problema tipico na busca do menor caminho seria desviar de obstaculos. A aproximacao mais simples a este problema seria ignorar todos os obstaculos ate chegarmos ate ele.
+
+Um algoritmo simples para resolver este problema dessa forma seria:
+
+1.Enquanto nao chegou no destino
+a.Escolhe uma celula em direcao ao destino
+b.Se aquela direcao esta livre, mova-se
+c.Se nao estiver, escolha outra direcao de acordo com uma estrategia de desvio
+
+Essa é uma boa estategia pois tem pequenas demanadas, temos que saber a posicao do agente, o destino, e se a celula vizinha que esta sendo analisada esta bloqueada ou nao.
+
+Diferentes tecnicas de desvio de obstaculos incluem:
+  Movimentos aleatorios - usado para obstaculos pequenos, que o agente provavelmente consegue passar por caso ele se mova na distancia contraria e tente novamente. 
+  
+  Contornar o obstaculo - caso o obstaculo seja grande, o agente pode seguir nas celulas adjacentes ao obstaculo ate que o obstaculo nao esteja mais adjacente. Uma forma mais robusta de contorno usada em robotica, define uma reta da celula em que o obstaculo foi encontrado ate a celula destino e contorna o obstaculo ate que a reta seja encontrada novamente. Se chegar ao ponto de inicio nao existe um desvio.
+
+Apesar das tecnicas de desvio fazerem um bom trabalho as vezes a unica maneira de se ter uma rota inteligente seria calculando o caminho todo antes de dar o primeiro passo. Metodos de desvio tambem nao realizam nenhum tratamento para regioes com diferentes custos.
+
+Existem varios algoritmos para tratar obstaculos, e diferentes custos. Do mais simples ao mais robusto temos:
+  Breadth-first search - Comecando com a celula inicial este algoritmo examina cada celula vizinha, depois cada vizinho de suas vizinhas, e cada vizinho dos vizinhos de suas vizinhas, e assim por diante ate que a celula destino seja encontrada. Esta tecnica é garantida de encontrar um dos menores caminhos se todos os passos tiverem o mesmo custo, entretanto a busca explora as celulas em todas as direcoes igualmente invez de direcionar a busca para a celula destino, e todos os passos nao deveriam ter o mesmo custo, passos diagonais sao maiores do que horizontais ou verticais.
+  
+  Bi-breadth-first search - Esse algoritmo melhora o primeiro iniciando-o na celula destino e na celula inicial, a busca se encerra quando uma das buscas encontra uma celula que ja foi analisada pela outra.
+  
+  Dijkstra - O algoritmo de dijkstra analisa a celula mais proxima do ponto inicial que ainda nao foi analisada a cada uma de suas iteracoes, verifica os vizinhos da celula a ser analisada e atualiza as suas respectivas distancias da celula original. Este algoritmo tras duas vantagens em relacao ao breadth-first, ele verifica o custo dos movimentos e atualiza o custo das celulas conforme melhores caminhos sao encontrados. Apesar de se adaptar bem para terrenos com diferentes custos, o Dijkstra ainda possui uma das fraquesas do breadth-first, ele analisa todas as celulas vizinhas, ignorando a direcao em que o destino se encontra.
+  
+  Depth-first search - Invez de visitar todos os vizinhos de uma celula antes de visitar os vizinhos de seus vizinhos, o depth-first busca no primeiro vizinho que encontra para cada celula. O codigo semelhante ao do breadth-first, mas adaptado para armazenar a profundidade de cada celula, ele visita cada celula como visitada no caminho de ida, e as marca como nao validos no caminho de volta para evitar que dois caminhos atravessem a mesma celula. Duas melhorias podem ser feitas nesse algoritmo, a primeira adiciona a cada celula a menor distancia ate ela ja encontrada, dessa maneira o algoritmo apenas nao visitaria aquela celula novamente se nova distancia ate la nao for menor do que a ultima menor distancia encontrada; a segunda sempre busca a celula visinha na direcao da celula destino. Devemos definir quao profundo a busca deve ir antes de abortar este caminho.
+  
+  Iterative-deepning depth-first - Se o limite da profundidade da busca no depth-first for muito baixo ele talvez nao encontre o destino, se for muito alto, ele vai ficar analisando celulas distantes, ocasionando perda de tempo ou ate mesmo em um caminho que nao é o menor caminho. A tecnica de iterative-deepening realiza a busca em profundidade aumentando a profundidade limite a cada iteracao do algoritmo em uma celula ate que a celula destino seja encontrada. Podemos melhorar este algoritmo realizando a primeira iteracao com uma profundidade igual ao numero de celulas entre a celula inicial e a celula destino em uma linha reta.
+  
+  Best-first search - Esse é o primeiro tipo de busca heuristico, ou sjea ele considera o seu conhecimento do dominio para guiar a busca. Ele funciona similar ao Dijkstra, mas invez de suas celulas armazenarem a distancia da celula de inicio, eles armazenam uma estimativa da distancia ate a celula destino. Facilmente um dos algoritmos mais rapidos, que vai em direcao a celula destino da forma mais direta. Entretanto ele nao considera o custo acomulado de um terreno, atravessando areas mais custosas invez de ir por volta delas. A maneira com que ele encontra o seu caminho envolta de obstaculos nao é direta, ele usa uma tecnica semlhante ao contorno de obstaculos.
+  
+A estrela dos algoritmos de menor caminho, o A*:
+  Este algoritmo analiza cada uma das celulas vizinhas e verifica uma estimativa do custo da rota ate a celula destino apartir daquela celula vizinha. Armazenando em cada celula o tamanho do caminho ate ela, e a distancia estimada dela ate a celula destino, o algoritmo A* mistura propriedades do algoritmo Dijkstra com propriedades do Best-first. O algoritmo A* tem interessantes propriedades, ele garante encontrar o menor caminho desde que a funcao heuristica esteja correta, ou seja nunca maior do que a distancia restante para o destino; ele é o que usa a funcao heuristica mais eficientemente, nenhum outro algoritmo de busca que utiliza uma funcao heuristica ira analisar menos celula do que o A*.
+  
+Existem tecnicas para lidar com a alta alocacao de memoria do A*:
+  Beam search - Limite a quantidade de celulas da lista aberta, se a lista estiver cheia e uma nova celula tiver que ser adicionada, simplesmente remova a celula de pior custo da lista. A lista fechada tambem pode ser eliminada se cada celula armazenar o tamanho do seu melhor caminho. Isso acaba resultando em nem sempre termos o menor caminho, ja que algumas celulas podem ser removidas, mas encontraria um caminho aceitavel.
+  
+  Iterative-deepening A* - Elimina a necessidade de uma lista aberta ou fechada. Simplesmente faca a busca recursivamente armazenando o custo do caminho acomulado, iniciando com um limite igual a estimativa da distancia do inicio ao fim realiza-se a busca recursivamente aumentando o limite para o custo do ultimo caminho acomulado.

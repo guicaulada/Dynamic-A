@@ -1,0 +1,5 @@
+A* em um ambiente 3D facilita um algoritmo mais eficiente quando comparado com 2D
+>Explica a funcao heuristica de Manhattan com um desenho.
+O A* em um ambiente 3D checa 26 direcoes invez de 8 como no 2D
+De acordo com a pesquisa e os estudos apresentados o tempo de exlporacao em 3D é menor, e a busca é menos profunda, a sua efciencia é maior com menor numero de celulas, entre 10% e 40% mais eficiente que 2D.
+Apesar de ser mais eficiente para um ambiente aonde se necessita 360 graus, o algoritmo A* ainda é mais eficiente em jogos baseados no chao, é preciso mais pesquisa para saber o que torna o algoritmo 3D mais eficiente, aonde esta o aumento da eficiencia.

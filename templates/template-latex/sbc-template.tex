@@ -10,23 +10,15 @@
      
 \sloppy
 
-\title{Instructions for Authors of SBC Conferences\\ Papers and Abstracts}
+\title{D* uma implementação dinâmica do A*}
 
-\author{Luciana P. Nedel\inst{1}, Rafael H. Bordini\inst{2}, Flávio Rech
-  Wagner\inst{1}, Jomi F. Hübner\inst{3} }
+\author{Guilherme Cauladal\inst{1}, Pedro Cacique\inst{1} }
 
 
-\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul
-  (UFRGS)\\
-  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
-\nextinstitute
-  Department of Computer Science -- University of Durham\\
-  Durham, U.K.
-\nextinstitute
-  Departamento de Sistemas e Computação\\
-  Universidade Regional de Blumenal (FURB) -- Blumenau, SC -- Brazil
-  \email{\{nedel,flavio\}@inf.ufrgs.br, R.Bordini@durham.ac.uk,
-  jomi@inf.furb.br}
+\address{Faculdade de Computação e Informática -- Universidade Presbiteriana Mackenzie
+  (UPM)\\
+  R. da Consolação, 930 - Consolação, São Paulo - SP, 01302-907 - Brazil
+  \email{guistoppa1995@gmail.com, phcacique@gmail.com}
 }
 
 \begin{document} 
@@ -34,25 +26,24 @@
 \maketitle
 
 \begin{abstract}
-  This meta-paper describes the style to be used in articles and short papers
-  for SBC conferences. For papers in English, you should add just an abstract
-  while for the papers in Portuguese, we also ask for an abstract in
-  Portuguese (``resumo''). In both cases, abstracts should not have more than
-  10 lines and must be in the first page of the paper.
+	The A* algorithm is the most used in the game and robotics industry, although it is
+	one of the best pathfinding algorithms out there, the pre-processing necessary in its
+	original implementation makes it hard to execute this algorithm in a dynamic environment.
+	To address that issue, this paper explores the possibility of making A* more flexible and
+	dynamic, so it can adapt to the terrain and other dynamic objects that can be added to the map.
 \end{abstract}
      
 \begin{resumo} 
-  Este meta-artigo descreve o estilo a ser usado na confecção de artigos e
-  resumos de artigos para publicação nos anais das conferências organizadas
-  pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos
-  escritos em português. Artigos em inglês deverão apresentar apenas abstract.
-  Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract)
-  não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira
-  página do artigo.
+	O algoritmo A* é o algorítimo de busca mais utilizado na industria de games e robótica,
+	entretanto apesar de ser um dos melhores algorítimos para busca de menor caminho, o
+	pre-processamento necessário em sua versão original dificulta a sua execução em ambientes
+	dinâmicos. Para solucionar este problema este artigo explora a possibilidade de tornar o
+	algoritmo A* mais flexível e dinâmico, para que ele se adapte ao terreno e outros objetos
+	dinâmicos que podem ser inseridos no mapa.
 \end{resumo}
 
 
-\section{General Information}
+\section{Introdução}
 
 All full papers and posters (short papers) submitted to some SBC conference,
 including any supporting documents, should be written in English or in
@@ -64,7 +55,7 @@ points of space before each paragraph. Page numbers must be suppressed.
 Full papers must respect the page limits defined by the conference.
 Conferences that publish just abstracts ask for \textbf{one}-page texts.
 
-\section{First Page} \label{sec:firstpage}
+\section{Materiais e métodos} \label{sec:firstpage}
 
 The first page must display the paper title, the name and address of the
 authors, the abstract in English and ``resumo'' in Portuguese (``resumos'' are
@@ -81,7 +72,7 @@ The abstract and ``resumo'' (if is the case) must be in 12 point Times font,
 indented 0.8cm on both sides. The word \textbf{Abstract} and \textbf{Resumo},
 should be written in boldface and must precede the text.
 
-\section{CD-ROMs and Printed Proceedings}
+\section{Resultados}
 
 In some conferences, the papers are published on CD-ROM while only the
 abstract is published in the printed Proceedings. In this case, authors are
@@ -89,7 +80,7 @@ invited to prepare two final versions of the paper. One, complete, to be
 published on the CD and the other, containing only the first page, with
 abstract and ``resumo'' (for papers in Portuguese).
 
-\section{Sections and Paragraphs}
+\section{Discussões}
 
 Section titles must be in boldface, 13pt, flush left. There should be an extra
 12 pt of space before each title. Section numbering is optional. The first
@@ -100,7 +91,7 @@ subsequent paragraphs should be indented by 1.27 cm.
 
 The subsection titles must be in boldface, 12pt, flush left.
 
-\section{Figures and Captions}\label{sec:figs}
+\section{Conclusões}\label{sec:figs}
 
 
 Figure and table captions should be centered if less than one line
@@ -148,7 +139,11 @@ black-and-white images, and 150-300 dpi for grayscale images.  Do not include
 images with excessive resolution, as they may take hours to print, without any
 visible difference in the result. 
 
-\section{References}
+\section{Agradecimentos}
+
+Thank you teacher.
+
+\section{Referências}
 
 Bibliographic references must be unambiguous and uniform.  We recommend giving
 the author names references in brackets, e.g. \cite{knuth:84},

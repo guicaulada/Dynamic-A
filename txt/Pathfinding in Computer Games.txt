@@ -1,0 +1,50 @@
+Este artigo apresenta detalhada informaco sobre topicos resumidos em outros artigos.
+Existem dois tipos de pathfinding direcionados e nao-direcionados
+
+Nao-direcionados como o Bredth-First e o Depth-First atuam como um rato em um labirinto, correndo cegamente buscando uma saida, sem planejar como sair do labitinto, utilizando toda a sua energia para correr pelo mapa.
+
+Dirscionados nao correm cegamente, eles tem um processo para analisar seu proximo passo antes de realiza-lo.
+	Busca de custo uniform - modifica a busca para sempre escolher a celula vizinha de menor custo. Pode ser muito ineficiente.
+	Heuristic search - estima o custo das celulas vizinhas ate a celula destino.
+	
+Os algiritmos mais aplicados na industria de games usam uma ou mais dessas estrategias e sao conhecidos como Dijkstra e A*
+O algoritmo de Dijkstra utiliza a busca de custo uniforme e o algoritmo A* utiliza uma combinacao das duas estrategias.
+O A* retorna um caminho mais preciso e eficciente do que o Dijkstra, A* é o algortmo mais utilizado na area de busca pelo menor caminho.
+
+>Este artigo tem imagens comparando o A* ao Dijkstra e o Bredth-First ao Depth-First.
+
+Os algoritmos direcionados realizam mais iteracoes do que os nao-direcionados, entretanto sempre retornam o menor caminho, retornar o menor caminho é mais importante pois se o agente seguir caminhos diferentes dos melhores caminhos isso pode ser percebido como falta de inteligencia por um jogador.
+
+Novamente como o A* funciona em pseudocodigo:
+g - custo para chegar ate a celula
+h - estimativa da distancia ate o destino
+f - a soma de g e h e melhor estimativa de qual sera o menor caminho.
+ 
+1. Define P como celula de inicio.
+2. Define os valores f, g e h de P.
+3. Adiciona P a lista de celulas abertas. Nesse momento P é a unica celula da lista aberta.
+4. Define B como a melhor celula da lista aberta, com o menor f.
+a. Se B é a celula destino, entao pare, o caminho foi encontrado.
+b. Se a lista de celulas abertas se encontra vazia, entao pare, nao existe um caminho.
+5. Define C como uma celula valida vizinha a B.
+a. Define os valores f, g e h de C.
+b. Checa se C esta na lista aberta ou fechada.
+i. Se estiver na aberta, verifica se o valor do novo caminho é mais eficiente, se possui um menor f.
+1. Se estiver na fechada, atualiza o caminho.
+ii. Se nao estiver em nenhuma, adicionamos C a lista aberta.
+c. Repita a etapa 5 para todos os vizinhos de B.
+6. Repita a etapa 4.
+
+Uma das limitacoes dos algoritmos de busca se dao por causa do pre-processamento que torna impossivel ao algoritmo que suporte ambientes dinamicos, logo se algo se move em uma posciao tornando uma das celulas invalidas, o agente ainda vai agir como se aquela celula fosse valida. Outro problema que surge por causa do pre-processamento seria o movimento nnao realista, de agentes que se movem e linhas retas entre celulas de busca, normalmente se utilizam de tecnicas de pos-processamento para torana o caminho mais realista.
+
+O problema listado acima se da pela introducao de objetos dinamicos em um mapa estatico, uma das solucoes exploradas para este problema seria dar ao agente diferentes sensores para guiar o algoritmo de busca, mas nao controla-lo por completo.
+
+O algoritmo A* requer grandes quantidades de CPU, ainda mais com grandes mapas e multiplos agentes. A insercao de objetos dinamicos, tambem apresentam grandes problemas pro A*, uma vez que um caminho foi calculado, se um objeto dinamico bloqueia o caminho do agente, ele nao tera conhecimento desse novo objeto, e ira ignora-lo. Simplismente re-aplicar o A* seria muito intensivo para CPU.
+
+Pesquisas existem para criar um algoritmo D* que permite com que o agente perceba os custos das celulas mudando ao seu redor enquanto move-se pelo mapa. Entretanto esta tecnica, requer ainda mais processamento da CPU e define um limite de objetos dinamicos que podem existir ao mesmo tempo.
+
+Uma das maiores limitacoes na industria de games seria o algoritmo A* e o quanto a industria depende dele. Invez de desenvolver novos conceitos os desenvolvedores acabam modificando suas ideias iniciais para se encaixarem nas limitacoes do A* ou D*, muitas vezes resultando em uma diminuicao de objetos dinamicos no jogo, diminuindo seu potencial.
+
+Uma solucao para este problema seria usar aprendizagem de maquina e redes neurais para ensinar ao agente como li-dar com problemas de busca de menor caminho em tempo real.
+
+>Bastante informacao sobre machine learning mas nao acho que isso faca parte do escopo do projeto.
