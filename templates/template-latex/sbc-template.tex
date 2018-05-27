@@ -34,8 +34,8 @@ dynamic, so it can adapt to the terrain and other dynamic objects that can be ad
 \end{abstract}
      
 \begin{resumo} 
-O algorítimo A* é o algorítimo de busca mais utilizado na industria de games e robótica,
-entretanto apesar de ser um dos melhores algorítimos para busca de menor caminho, o
+O algoritmo A* é o algoritmo de busca mais utilizado na industria de games e robótica,
+entretanto apesar de ser um dos melhores algoritmos para busca de menor caminho, o
 pre-processamento necessário em sua versão original dificulta a sua execução em ambientes
 dinâmicos. Para solucionar este problema este artigo explora a possibilidade de tornar o
 algoritmo A* mais flexível e dinâmico, para que ele se adapte ao terreno e outros objetos
@@ -49,23 +49,23 @@ A busca do menor caminho é um dos maiores problemas na industria de jogos e robó
 Entre todos os algoritmos desenvolvidos para solucionar este problema o mais popular de todos é o A*.
 O algoritmo A* tem sido cada vez mais optimizado, varias modificações e outras versões do algoritmo foram surgindo, 
 buscando sempre aumentar sua velocidade e diminuir seu consumo de memoria, sem perder precisão \cite{modern}. Em busca de tornar o
-algorítimo mais flexível e adaptável, este artigo sugere uma técnica de optimização que envolve a definição de tipos
-para as células do mapa que mudam a forma com que o algorítimo encontra seus vizinhos, adaptando o algorítimo as
+algoritmo mais flexível e adaptável, este artigo sugere uma técnica de optimização que envolve a definição de tipos
+para as células do mapa que mudam a forma com que o algoritmo encontra seus vizinhos, adaptando o algoritmo as
 diferentes propriedades do mapa.
 
-\section{Algorítimos de busca}
+\section{algoritmos de busca}
 
-Existem dois tipos de algorítimos de busca de menor caminho, não-direcionados, como a busca em largura ou em profundidade,
-estes algorítimos não possuem nenhuma heurística, eles correm cegamente pelo mapa, ja os algorítimos direcionados como o Dijkstra e o A*
-tentam escolher a melhor rota para seu destino. Algorítimos direcionados realizam mais iterações do que os não-direcionados,
+Existem dois tipos de algoritmos de busca de menor caminho, não-direcionados, como a busca em largura ou em profundidade,
+estes algoritmos não possuem nenhuma heurística, eles correm cegamente pelo mapa, ja os algoritmos direcionados como o Dijkstra e o A*
+tentam escolher a melhor rota para seu destino. algoritmos direcionados realizam mais iterações do que os não-direcionados,
 entretanto eles retornam sempre o menor caminho, para qual é dado maior importância \cite{computer}.
+\newpage
+\subsection{algoritmo A*}
 
-\subsection{Algorítimo A*}
-
-O algorítimo A* seleciona uma célula inicial, analisa cada uma das células vizinhas e verifica uma estimativa do custo da rota ate a célula
+O algoritmo A* seleciona uma célula inicial, analisa cada uma das células vizinhas e verifica uma estimativa do custo da rota ate a célula
 destino a partir daquela célula vizinha. Armazenando em cada célula o custo do caminho ate ela e a distancia estimada dela ate a célula destino,
-o algorítimo A* mistura propriedades de dois algorítimos de busca, Dijkstra e "Melhor-Primeiro". Ele depende de uma função heurística
-que calcula esta estimativa, quanto mais precisa a função heurística, maior a garantia de que o algorítimo retornara o menor caminho \cite{smart}.\\
+o algoritmo A* mistura propriedades de dois algoritmos de busca, Dijkstra e "Melhor-Primeiro". Ele depende de uma função heurística
+que calcula esta estimativa, quanto mais precisa a função heurística, maior a garantia de que o algoritmo retornara o menor caminho \cite{smart}.\\
 O funcionamento do A* em pseudocódigo \cite{computer}:\\
 \hspace*{10mm}g - custo para chegar ate a célula\\
 \hspace*{10mm}h - estimativa da distancia ate o destino\\
@@ -84,45 +84,49 @@ O funcionamento do A* em pseudocódigo \cite{computer}:\\
 \hspace*{10mm}\hspace{10mm}\hspace{10mm}iii. Se não estiver em nenhuma, adiciona-se C a lista de células abertas.\\
 \hspace*{10mm}\hspace{10mm}c. Repete-se a etapa 5 para todos os vizinhos de B.\\
 \hspace*{10mm}6. Repete-se a partir da etapa 4.
-
 \begin{figure}[ht]
 	\centering
-	\includegraphics[width=.7\textwidth]{astar.png}
-	\caption{Exemplo do algorítimo A* em funcionamento denotando os valores de
+	\includegraphics[width=.6\textwidth]{astar.png}
+	\caption{Exemplo do algoritmo A* em funcionamento denotando os valores de
 		f no canto superior esquerdo, g no canto inferior esquerdo, e h no canto inferior direito. 
 		\cite{begginers}}
 	\label{fig:astar}
 \end{figure}
-
+\newpage
 \subsection{Limitações}
 
-Devido ao seu pre-processamento e o alto uso de memoria, existe uma grande dificuldade em fazer com que este algorítimo suporte ambientes dinâmicos,
+Devido ao seu pre-processamento e o alto uso de memoria, existe uma grande dificuldade em fazer com que este algoritmo suporte ambientes dinâmicos,
 uma célula não pode mudar de estado, custo ou quantidade de vizinhos apos o pre-processamento, este novo dado sera ignorado pelo calculo de menor caminho
-do algorítimo. Quanto mais agentes executando o algorítimo, mais recursos de processamento e memoria serão necessários para sua execução.
-Um dos maiores limitadores na industria de jogos seria o algorítimo A* e o quanto esta industria depende dele. Invés de desenvolverem novos conceitos,
+do algoritmo. Quanto mais agentes executando o algoritmo, mais recursos de processamento e memoria serão necessários para sua execução.
+Um dos maiores limitadores na industria de jogos seria o algoritmo A* e o quanto esta industria depende dele. Invés de desenvolverem novos conceitos,
 desenvolvedores preferem modificar suas ideias iniciais para se encaixarem a estas limitações, muitas vezes diminuindo o potencial do produto final \cite{computer}.
 
 \subsection{Optimização}
 
-Adicionando a cada célula do algorítimo um tipo que informa ao algorítimo como interpretar os vizinhos desta célula especifica.
+Adicionando a cada célula do algoritmo um tipo que informa ao algoritmo como interpretar os vizinhos desta célula especifica.
 Podemos criar células de tipo hexagonais, ou quadradas, ou de qualquer tipo, afinal estas grades de células hexagonais e quadradas com as quais estamos acostumados são
 apenas representações dos vizinhos de cada célula através de barreiras físicas, nada impede a criação de um tipo de célula que possua uma especie de túnel que a conecte com uma outra
-célula que não esta conecta fisicamente a ela. Utilizando esta técnica, é possível a criação de um algorítimo A* que se adapte a qualquer tipo de célula que esta sendo analisada pelo algorítimo.
-
+célula que não esta conecta fisicamente a ela. Utilizando esta técnica, é possível a criação de um algoritmo A* que se adapte a qualquer tipo de célula que esta sendo analisada pelo algoritmo.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.7\textwidth]{optimizacao.png}
-	\caption{Esta figura demonstra o algorítimo optimizado em execução
+	\caption{Esta figura demonstra o algoritmo optimizado em execução
 		para grades de células com tipos diferentes.}
 	\label{fig:optimizacao}
 \end{figure}
+\newline As grades retangulares, hexagonais, octagonais, de diferentes formatos, são apenas representações de grafos de uma maneira visual, cada uma de suas celulas podem ser representadas como pontos em um grafo, de maneira que suas conexoes representam suas celulas vizinhas, estas conexoes podem ser modificadas de acordo com o tipo da celula.
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=.7\textwidth]{comparacao.png}
+	\caption{Esta figura representa as grades hexagonais e retangulares
+		no formato de um grafo.}
+	\label{fig:comparacao}
+\end{figure}
 
-
+\newpage
 \section{Agradecimentos}
 
 Agradeço ao professor Pedro Cacique assim como a todos os outros professores da FCI por seus ensinamentos.
-
-\section{Referências}
 
 \bibliographystyle{sbc}
 \bibliography{sbc-template}
