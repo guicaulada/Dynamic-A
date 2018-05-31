@@ -42,9 +42,7 @@ algoritmo A* mais flexível e dinâmico, para que ele se adapte ao terreno e outro
 dinâmicos que podem ser inseridos no mapa.
 \end{resumo}
 
-
 \section{Introdução}
-
 A busca do menor caminho é um dos maiores problemas na industria de jogos e robótica.
 Entre todos os algoritmos desenvolvidos para solucionar este problema o mais popular de todos é o A*.
 O algoritmo A* tem sido cada vez mais optimizado, varias modificações e outras versões do algoritmo foram surgindo, 
@@ -53,15 +51,15 @@ algoritmo mais flexível e adaptável, este artigo sugere uma técnica de optimizaç
 para as células do mapa que mudam a forma com que o algoritmo encontra seus vizinhos, adaptando o algoritmo as
 diferentes propriedades do mapa.
 
-\section{algoritmos de busca}
-
+\section{Algoritmos de busca}
 Existem dois tipos de algoritmos de busca de menor caminho, não-direcionados, como a busca em largura ou em profundidade,
 estes algoritmos não possuem nenhuma heurística, eles correm cegamente pelo mapa, ja os algoritmos direcionados como o Dijkstra e o A*
 tentam escolher a melhor rota para seu destino. algoritmos direcionados realizam mais iterações do que os não-direcionados,
 entretanto eles retornam sempre o menor caminho, para qual é dado maior importância \cite{computer}.
-\newpage
-\subsection{algoritmo A*}
 
+\newpage
+
+\subsection{Algoritmo A*}
 O algoritmo A* seleciona uma célula inicial, analisa cada uma das células vizinhas e verifica uma estimativa do custo da rota ate a célula
 destino a partir daquela célula vizinha. Armazenando em cada célula o custo do caminho ate ela e a distancia estimada dela ate a célula destino,
 o algoritmo A* mistura propriedades de dois algoritmos de busca, Dijkstra e "Melhor-Primeiro". Ele depende de uma função heurística
@@ -92,9 +90,10 @@ O funcionamento do A* em pseudocódigo \cite{computer}:\\
 		\cite{begginers}}
 	\label{fig:astar}
 \end{figure}
-\newpage
-\subsection{Limitações}
 
+\newpage
+
+\subsection{Limitações}
 Devido ao seu pre-processamento e o alto uso de memoria, existe uma grande dificuldade em fazer com que este algoritmo suporte ambientes dinâmicos,
 uma célula não pode mudar de estado, custo ou quantidade de vizinhos apos o pre-processamento, este novo dado sera ignorado pelo calculo de menor caminho
 do algoritmo. Quanto mais agentes executando o algoritmo, mais recursos de processamento e memoria serão necessários para sua execução.
@@ -102,7 +101,6 @@ Um dos maiores limitadores na industria de jogos seria o algoritmo A* e o quanto
 desenvolvedores preferem modificar suas ideias iniciais para se encaixarem a estas limitações, muitas vezes diminuindo o potencial do produto final \cite{computer}.
 
 \subsection{Optimização}
-
 Adicionando a cada célula do algoritmo um tipo que informa ao algoritmo como interpretar os vizinhos desta célula especifica.
 Podemos criar células de tipo hexagonais, ou quadradas, ou de qualquer tipo, afinal estas grades de células hexagonais e quadradas com as quais estamos acostumados são
 apenas representações dos vizinhos de cada célula através de barreiras físicas, nada impede a criação de um tipo de célula que possua uma especie de túnel que a conecte com uma outra
@@ -114,7 +112,11 @@ célula que não esta conecta fisicamente a ela. Utilizando esta técnica, é possív
 		para grades de células com tipos diferentes.}
 	\label{fig:optimizacao}
 \end{figure}
-\newline As grades retangulares, hexagonais, octagonais, de diferentes formatos, são apenas representações de grafos de uma maneira visual, cada uma de suas celulas podem ser representadas como pontos em um grafo, de maneira que suas conexoes representam suas celulas vizinhas, estas conexoes podem ser modificadas de acordo com o tipo da celula.
+
+\newpage
+
+\subsection{Implementação}
+As grades retangulares, hexagonais, octagonais, de diferentes formatos, são apenas representações de grafos de uma maneira visual, cada uma de suas celulas podem ser representadas como pontos em um grafo, de maneira que suas conexoes representam suas celulas vizinhas, estas conexoes podem ser modificadas de acordo com o tipo da celula.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.7\textwidth]{comparacao.png}
@@ -122,10 +124,14 @@ célula que não esta conecta fisicamente a ela. Utilizando esta técnica, é possív
 		no formato de um grafo.}
 	\label{fig:comparacao}
 \end{figure}
+Para implementar a optimização sugerida, criamos uma classe grafo, que possui elementos da classe célula, cada célula possui funções que dizem sua posição no grafo, seu custo, se é valida ou não, assim como o seu tipo, que define como o grafo calculara os vizinhos da quela célula de acordo com sua posição.
+
+\subsection{Conclusão por enquanto...}
+Utilizando está técnica de optimização podemos definir varios tipos diferentes de células, não necessariamente formando grids, seus vizinhos podem ser definidos fora do escopo de suas barreiras fisícas abrindo diversas possibilidades para organização de um mapa de maneira que o algoritmo de busca de menor caminho levará em consideração tunneis e outros tipos de células que estão conectados a células que não são suas vizinhas físicamente.
 
 \newpage
-\section{Agradecimentos}
 
+\section{Agradecimentos}
 Agradeço ao professor Pedro Cacique assim como a todos os outros professores da FCI por seus ensinamentos.
 
 \bibliographystyle{sbc}
