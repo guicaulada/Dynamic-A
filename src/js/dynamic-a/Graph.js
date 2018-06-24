@@ -17,7 +17,7 @@ class Graph {
     for (let i = 0; i < cells.length; i++) {
       let cell = cells[i];
       if (!this.grid[cell.x]) this.grid[cell.x] = [];
-      let node = new GridNode(cell.x, cell.y, cell.weight, cell.multiplier, cell.neighbors);
+      let node = new Node(cell.x, cell.y, cell.weight, cell.multiplier, cell.neighbors);
       this.grid[cell.x][cell.y] = node;
       this.nodes.push(node);
     }
@@ -51,7 +51,7 @@ class Graph {
   /**
    * Mark the node as dirty
    * @memberof Graph
-   * @param {GridNode} node
+   * @param {Node} node
    */
   markDirty(node) {
     this.dirtyNodes.push(node);
@@ -61,7 +61,7 @@ class Graph {
   /**
    * Returns all neighbors based on node
    * @memberof Graph
-   * @param {GridNode} node
+   * @param {Node} node
    * @return {Array} List of connected nodes
    */
   neighbors(node) {

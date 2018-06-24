@@ -29,8 +29,8 @@ class Astar {
   * Perform an A* Search on a graph given a start and end node.
   * @static
   * @param {Graph} graph
-  * @param {GridNode} start
-  * @param {GridNode} end
+  * @param {Node} start
+  * @param {Node} end
   * @param {Object} [options]
   * @param {bool} [options.closest] Specifies whether to return the path to the closest node if the target is unreachable.
   * @param {Function} [options.heuristic] Heuristic function (see astar.heuristics).
@@ -103,7 +103,7 @@ class Astar {
    * Returns the path from starting node to current node
    * @static
    * @memberof Astar
-   * @param {GridNode} node
+   * @param {Node} node
    * @return {Array} List of nodes to current node
    */
   static pathTo(node) {
@@ -132,7 +132,7 @@ class Astar {
    * Cleans a node of all changes
    * @static
    * @memberof Astar
-   * @param {GridNode} node Node to be cleaned
+   * @param {Node} node Node to be cleaned
    */
   static cleanNode(node) {
     node.f = 0;

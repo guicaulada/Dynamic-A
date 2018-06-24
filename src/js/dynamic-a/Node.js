@@ -1,17 +1,17 @@
 
 /**
  * Implements a node
- * @class GridNode
+ * @class Node
  */
-class GridNode {
+class Node {
   /**
-   * Creates an instance of GridNode.
+   * Creates an instance of Node.
    * @param {Number} x
    * @param {Number} y
    * @param {Number} weight
    * @param {Number} multiplier
    * @param {Function} neighbors
-   * @memberof GridNode
+   * @memberof Node
    */
   constructor(x, y, weight, multiplier, neighbors) {
     this.x = x;
@@ -23,8 +23,8 @@ class GridNode {
 
   /**
    * Get cost to move to node, uses multiplier if x and y are different
-   * @memberof GridNode
-   * @param {GridNode} fromNeighbor
+   * @memberof Node
+   * @param {Node} fromNeighbor
    * @return {Number} Cost to move to node
    */
   getCost(fromNeighbor) {
@@ -38,7 +38,7 @@ class GridNode {
   /**
    * Checks if a node is valid
    * @return {Boolean} If node is valid or not (true/false)
-   * @memberof GridNode
+   * @memberof Node
    */
   isWall() {
     return this.weight === 0;
@@ -47,7 +47,7 @@ class GridNode {
   /**
    * Represents node in a string
    * @return {String} String representing node
-   * @memberof GridNode
+   * @memberof Node
    */
   toString() {
     return '[' + this.x + ' ' + this.y + ']';
