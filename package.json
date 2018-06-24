@@ -1,0 +1,22 @@
+{
+  "name": "dynamic-a",
+  "version": "0.1.0",
+  "description": "A dynamic A* pathfinding algorithm that adapts to the amount of neighbours of it's tiles.",
+  "main": "src/js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sighmir/Dynamic-A.git"
+  },
+  "author": "Guilherme Caulada (Sighmir)",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Sighmir/Dynamic-A/issues"
+  },
+  "homepage": "https://github.com/Sighmir/Dynamic-A#readme",
+  "devDependencies": {
+    "eslint-config-google": "^0.9.1"
+  }
+}
