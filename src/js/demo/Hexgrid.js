@@ -27,7 +27,7 @@ class Hexgrid {
                                 paper.text(cell.m[0], cell.m[1], cell.x + ',' + cell.y);
                             }],
                         ],
-                        neighbors: (grid) => {
+                        neighbors: [(grid) => {
                             let ret = [];
                             // Northwest
                             if (grid[x] && grid[x][y - 1]) {
@@ -54,7 +54,7 @@ class Hexgrid {
                                 ret.push(grid[x][y + 1]);
                             }
                             return ret;
-                        },
+                        }],
                     });
                     this.grid[x][y] = 1;
                 } else {

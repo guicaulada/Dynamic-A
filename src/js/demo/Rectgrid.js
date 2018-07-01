@@ -21,7 +21,7 @@ class Rectgrid {
                     weight: 1,
                     multiplier: 1.14,
                     drawers: [],
-                    neighbors: (grid) => {
+                    neighbors: [(grid) => {
                         let ret = [];
                         // West
                         if (grid[x - 1] && grid[x - 1][y]) {
@@ -58,7 +58,7 @@ class Rectgrid {
                             ret.push(grid[x + 1][y + 1]);
                         }
                         return ret;
-                    },
+                    }],
                 });
                 if (!this.grid[x]) this.grid[x] = [];
                 this.grid[x][y] = 1;

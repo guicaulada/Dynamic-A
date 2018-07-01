@@ -1,19 +1,39 @@
 
 /**
+ * Repaints connected cells.
+ * @param {Graph} graph Graph containing the cells.
+ */
+function repaintImportantCells(graph) {
+    if (graph.start) graph.start.p.attr({fill: 'green'});
+    if (graph.end) graph.end.p.attr({fill: 'red'});
+
+    for (let node of graph.nodes) {
+        if (node.multiplier == 2) {
+            node.p.attr({fill: node.color});
+        }
+    }
+}
+
+/**
+ * Paints the resulting path
+ * @param {*} result
+ */
+function paintResult(result) {
+    for (node of result) {
+        node.p.attr({fill: 'blue'});
+    }
+}
+
+/**
  * Runs Astar on Graph
  * @param {Graph} graph The graph to search
  * @return {Array} Array containing all nodes on shortest path
  */
 function runDynamicA(graph) {
     if (graph.start && graph.end) {
-        let start = graph.grid[graph.start.x][graph.start.y];
-        let end = graph.grid[graph.end.x][graph.end.y];
         let result = Astar.search(graph, graph.start, graph.end);
-        for (node of result) {
-            node.p.attr({fill: 'blue'});
-        }
-        start.p.attr({fill: 'green'});
-        end.p.attr({fill: 'red'});
+        paintResult(result);
+        repaintImportantCells(graph);
         return result;
     }
 }
@@ -24,8 +44,7 @@ function runDynamicA(graph) {
  */
 function cleanDynamicA(graph) {
     graph.cleanDirty();
-    if (graph.start) graph.start.p.attr({fill: 'green'});
-    if (graph.end) graph.end.p.attr({fill: 'red'});
+    repaintImportantCells(graph);
 }
 
 /**
@@ -51,6 +70,9 @@ function clickGraphCell(graph, cell) {
         }
         graph.end = graphCell;
         graph.end.p.attr({fill: 'red'});
+    } else if (event.altKey) {
+        tempCells.push(graphCell);
+        cell.p.attr({fill: 'yellow'});
     } else {
         if (graphCell.weight) {
             graphCell.p.attr({fill: 'grey'});

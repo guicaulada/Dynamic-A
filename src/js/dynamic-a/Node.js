@@ -19,6 +19,7 @@ class Node {
     this.weight = weight;
     this.multiplier = multiplier;
     this.neighbors = neighbors;
+    this.neighbors.node = this;
   }
 
   /**

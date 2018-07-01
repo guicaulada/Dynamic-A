@@ -1,3 +1,7 @@
+
+let connectedCells = {};
+let tempCells = [];
+
 window.onload = () => {
     // Load rectangular grid for demo
     rectGrid = new Rectgrid(rectLength);
@@ -48,7 +52,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
-document.addEventListener('keypress', (event) => {
+document.addEventListener('keydown', (event) => {
     if (event.key == 't') {
         showHexText = !showHexText;
         if (showHexText) {
@@ -64,5 +68,34 @@ document.addEventListener('keypress', (event) => {
         cleanDynamicA(hexGraph);
         cleanDynamicA(rectGraph);
         console.log('Path cleaned!');
+    }
+});
+
+document.addEventListener('keyup', (event) => {
+    let ret = tempCells.slice();
+    let color = '#' + Math.floor(Math.random() * 16000000).toString(16);
+    connectedCells[color] = ret;
+    if (event.key == 'Alt') {
+        for (let cell of connectedCells[color]) {
+            if (cell.multiplier != 2) {
+                cell.multiplier = 2;
+                cell.neighbors.push(() => {
+                    return connectedCells[color].filter((node) => {
+                        return !(node.x == cell.x && node.y == cell.y);
+                    });
+                });
+                cell.color = color;
+                cell.p.attr({fill: color});
+            } else {
+                cell.neighbors.pop();
+                connectedCells[cell.color] = connectedCells[cell.color].filter((node) => {
+                    return !(node.x == cell.x && node.y == cell.y);
+                });
+                cell.p.attr({fill: 'white'});
+                cell.color = 'white';
+                cell.multiplier = 1.14;
+            }
+        }
+        tempCells = [];
     }
 });

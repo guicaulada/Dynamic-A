@@ -65,7 +65,13 @@ class Graph {
    * @return {Array} List of connected nodes
    */
   neighbors(node) {
-    return node.neighbors(this.grid);
+    let neighbors = [];
+    for (let i = 0; i < node.neighbors.length; i++) {
+      neighbors = neighbors.concat(node.neighbors[i](this.grid).filter((nbs) => {
+        return neighbors.indexOf(nbs) < 0;
+      }));
+    }
+    return neighbors;
   }
 
   /**
