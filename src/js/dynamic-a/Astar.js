@@ -39,7 +39,13 @@ class Astar {
   static search(graph, start, end, options) {
     graph.cleanDirty();
     options = options || {};
-    let heuristic = options.heuristic || Astar.heuristics().manhattan;
+    let heuristic = options.heuristic;
+    if (typeof heuristic === 'string') {
+      heuristic = Astar.heuristics()[heuristic];
+    }
+    if (typeof heuristic != 'function') {
+      heuristic = Astar.heuristics().manhattan;
+    }
     let closest = options.closest || false;
     let openHeap = Astar.getHeap();
     let closestNode = start; // set the start node to be the closest if required
@@ -113,6 +119,7 @@ class Astar {
       path.unshift(curr);
       curr = curr.parent;
     }
+    path.cost = node.g;
     return path;
   }
 

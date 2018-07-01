@@ -62,8 +62,16 @@ document.addEventListener('keydown', (event) => {
         }
     } else if (event.key == 'Enter') {
         console.log('Running Dynamic-A!');
-        console.log(`Hex path: ${runDynamicA(hexGraph)}`);
-        console.log(`Rect path: ${runDynamicA(rectGraph)}`);
+
+        let hexResult = runDynamicA(hexGraph);
+        if (hexResult) {
+            console.log(`Hex path: ${hexResult} = ${hexResult.cost}`);
+        }
+
+        let rectResult = runDynamicA(rectGraph);
+        if (rectResult) {
+            console.log(`Rect path: ${rectResult} = ${rectResult.cost}`);
+        }
     } else if (event.key == ' ') {
         cleanDynamicA(hexGraph);
         cleanDynamicA(rectGraph);
@@ -77,8 +85,8 @@ document.addEventListener('keyup', (event) => {
     connectedCells[color] = ret;
     if (event.key == 'Alt') {
         for (let cell of connectedCells[color]) {
-            if (cell.multiplier != 2) {
-                cell.multiplier = 2;
+            if (cell.weight != 2) {
+                cell.weight = 2;
                 cell.neighbors.push(() => {
                     return connectedCells[color].filter((node) => {
                         return !(node.x == cell.x && node.y == cell.y);
@@ -93,7 +101,7 @@ document.addEventListener('keyup', (event) => {
                 });
                 cell.p.attr({fill: 'white'});
                 cell.color = 'white';
-                cell.multiplier = 1.14;
+                cell.weight = 1;
             }
         }
         tempCells = [];

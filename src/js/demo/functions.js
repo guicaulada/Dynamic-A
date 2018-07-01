@@ -8,7 +8,7 @@ function repaintImportantCells(graph) {
     if (graph.end) graph.end.p.attr({fill: 'red'});
 
     for (let node of graph.nodes) {
-        if (node.multiplier == 2) {
+        if (node.weight == 2) {
             node.p.attr({fill: node.color});
         }
     }
@@ -31,7 +31,9 @@ function paintResult(result) {
  */
 function runDynamicA(graph) {
     if (graph.start && graph.end) {
-        let result = Astar.search(graph, graph.start, graph.end);
+        let result = Astar.search(graph, graph.start, graph.end, {
+            heuristic: 'diagonal',
+        });
         paintResult(result);
         repaintImportantCells(graph);
         return result;
