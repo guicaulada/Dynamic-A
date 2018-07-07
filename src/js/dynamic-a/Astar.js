@@ -4,28 +4,6 @@
  */
 class Astar {
   /**
-   * Returns default heuristics (manhattan and diagonal)
-   * @memberof Astar
-   * @return {Object} Default heuristics
-   */
-  static heuristics() {
-    return {
-      manhattan: (pos0, pos1) => {
-        let d1 = Math.abs(pos1.x - pos0.x);
-        let d2 = Math.abs(pos1.y - pos0.y);
-        return d1 + d2;
-      },
-      diagonal: (pos0, pos1) => {
-        let D = 1;
-        let D2 = Math.sqrt(2);
-        let d1 = Math.abs(pos1.x - pos0.x);
-        let d2 = Math.abs(pos1.y - pos0.y);
-        return (D * (d1 + d2)) + ((D2 - (2 * D)) * Math.min(d1, d2));
-      },
-    };
-  }
-
-  /**
   * Perform an A* Search on a graph given a start and end node.
   * @static
   * @param {Graph} graph
@@ -39,17 +17,10 @@ class Astar {
   static search(graph, start, end, options) {
     graph.cleanDirty();
     options = options || {};
-    let heuristic = options.heuristic;
-    if (typeof heuristic === 'string') {
-      heuristic = Astar.heuristics()[heuristic];
-    }
-    if (typeof heuristic != 'function') {
-      heuristic = Astar.heuristics().manhattan;
-    }
     let closest = options.closest || false;
     let openHeap = Astar.getHeap();
     let closestNode = start; // set the start node to be the closest if required
-    start.h = heuristic(start, end);
+    start.h = start.heuristic(start, end);
     graph.markDirty(start);
     openHeap.push(start);
     while (openHeap.size() > 0) {
@@ -77,7 +48,7 @@ class Astar {
           // Found an optimal (so far) path to this node.  Take score for node to see how good it is.
           neighbor.visited = true;
           neighbor.parent = currentNode;
-          neighbor.h = neighbor.h || heuristic(neighbor, end);
+          neighbor.h = neighbor.h || neighbor.heuristic(neighbor, end);
           neighbor.g = gScore;
           neighbor.f = neighbor.g + neighbor.h;
           graph.markDirty(neighbor);

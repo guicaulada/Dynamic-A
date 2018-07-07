@@ -59,6 +59,12 @@ class Rectgrid {
                         }
                         return ret;
                     }],
+                    heuristic: (pos0, pos1) => {
+                        // Manhattan
+                        let d1 = Math.abs(pos1.x - pos0.x);
+                        let d2 = Math.abs(pos1.y - pos0.y);
+                        return d1 + d2;
+                    },
                 });
                 if (!this.grid[x]) this.grid[x] = [];
                 this.grid[x][y] = 1;

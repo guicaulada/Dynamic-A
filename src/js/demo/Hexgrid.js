@@ -55,6 +55,14 @@ class Hexgrid {
                             }
                             return ret;
                         }],
+                        heuristic: (pos0, pos1) => {
+                            // Diagonal
+                            let D = 1;
+                            let D2 = Math.sqrt(2);
+                            let d1 = Math.abs(pos1.x - pos0.x);
+                            let d2 = Math.abs(pos1.y - pos0.y);
+                            return (D * (d1 + d2)) + ((D2 - (2 * D)) * Math.min(d1, d2));
+                        },
                     });
                     this.grid[x][y] = 1;
                 } else {

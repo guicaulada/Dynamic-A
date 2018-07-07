@@ -17,7 +17,7 @@ class Graph {
     for (let i = 0; i < cells.length; i++) {
       let cell = cells[i];
       if (!this.grid[cell.x]) this.grid[cell.x] = [];
-      let node = new Node(cell.x, cell.y, cell.weight, cell.multiplier, cell.neighbors);
+      let node = new Node(cell.x, cell.y, cell.weight, cell.multiplier, cell.neighbors, cell.heuristic);
       this.grid[cell.x][cell.y] = node;
       this.nodes.push(node);
     }

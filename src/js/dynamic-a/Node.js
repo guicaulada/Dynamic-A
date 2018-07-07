@@ -10,15 +10,17 @@ class Node {
    * @param {Number} y
    * @param {Number} weight
    * @param {Number} multiplier
-   * @param {Function} neighbors
+   * @param {Array} neighbors
+   * @param {Function} heuristic
    * @memberof Node
    */
-  constructor(x, y, weight, multiplier, neighbors) {
+  constructor(x, y, weight, multiplier, neighbors, heuristic) {
     this.x = x;
     this.y = y;
     this.weight = weight;
     this.multiplier = multiplier;
     this.neighbors = neighbors;
+    this.heuristic = heuristic;
     this.neighbors.node = this;
   }
 
