@@ -67,7 +67,7 @@ class Graph {
   neighbors(node) {
     let neighbors = [];
     for (let i = 0; i < node.neighbors.length; i++) {
-      neighbors = neighbors.concat(node.neighbors[i](this.grid).filter((nbs) => {
+      neighbors = neighbors.concat(node.neighbors[i](this, node).filter((nbs) => {
         return neighbors.indexOf(nbs) < 0;
       }));
     }
@@ -75,9 +75,35 @@ class Graph {
   }
 
   /**
-   * Displays the graph in a string
-   * @return {String} String representation of the graph
+   * Merges another graph adding it's x and y
    * @memberof Graph
+   * @param {Graph} graph
+   * @return {Graph} Merged graphs
+   */
+  merge(graph) {
+    let fullGraph = new Graph([]);
+    for (let node of this.nodes) {
+      let cell = new Node(node.x, node.y, node.weight, node.multiplier, node.neighbors, node.heuristic);
+      if (!fullGraph.grid[cell.x]) fullGraph.grid[cell.x] = [];
+      fullGraph.grid[cell.x][cell.y] = cell;
+      fullGraph.nodes.push(cell);
+    }
+    let offset = fullGraph.grid.length;
+    for (let node of graph.nodes) {
+      let cell = new Node(offset + node.x, node.y, node.weight, node.multiplier, node.neighbors, node.heuristic);
+      if (!fullGraph.grid[cell.x]) fullGraph.grid[cell.x] = [];
+      fullGraph.grid[cell.x][cell.y] = cell;
+      fullGraph.nodes.push(cell);
+    }
+    fullGraph.offset = offset;
+    fullGraph.init();
+    return fullGraph;
+  }
+
+  /**
+   * Displays the graph in a string
+   * @memberof Graph
+   * @return {String} String representation of the graph
    */
   toString() {
     let graphString = [];

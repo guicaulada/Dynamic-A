@@ -69,18 +69,8 @@ class Hexboard {
             p.attr('stroke-linejoin', 'round');
             p.__parent__ = cell;
             cell.p = p;
-        }
 
-        for (let j = 0; j < this.board.length; j++) {
-            let cell = this.board[j];
-            if ('drawers' in cell) {
-                for (let i = 0; i < cell.drawers.length; i++) {
-                    let drawer = cell.drawers[i];
-                    let passthroughs = drawer.splice(1, drawer.length - 1);
-                    let params = [paper, cell].concat(passthroughs);
-                    drawer[0].apply(this, params);
-                }
-            }
+            paper.text(cell.m[0], cell.m[1], cell.x + ',' + cell.y);
         }
     }
 
@@ -182,13 +172,14 @@ class Hexboard {
     }
 
     /**
-     * Adds the paper cells from the board to a Graph
+     * Adds the cells from the grid to a Graph
      * @memberof Hexgrid
      * @param {*} graph
+     * @param {*} offset
      */
-    addPaperToGraph(graph) {
+    addPaperToGraph(graph, offset = 0) {
         for (let cell of this.board) {
-            graph.grid[cell.x][cell.y].p = cell.p;
+            graph.grid[cell.x + offset][cell.y].p = cell.p;
         }
     }
 }

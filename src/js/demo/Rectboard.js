@@ -27,7 +27,6 @@ class Rectboard {
     let paper = this.paper;
     for (let j = 0; j < this.board.length; j++) {
         let cell = this.board[j];
-
         let moveRight = this.width * cell.x;
         let moveDown = this.height * cell.y;
 
@@ -39,8 +38,9 @@ class Rectboard {
         p.attr('stroke-linecap', 'round');
         p.attr('stroke-linejoin', 'round');
         p.__parent__ = cell;
-
         cell.p = p;
+
+        paper.text(moveRight + (this.width / 2), moveDown + (this.height / 2), cell.x + ',' + cell.y);
     }
   }
 
@@ -48,10 +48,11 @@ class Rectboard {
    * Adds the cells from the grid to a Graph
    * @memberof Hexgrid
    * @param {*} graph
+   * @param {*} offset
    */
-  addPaperToGraph(graph) {
+  addPaperToGraph(graph, offset = 0) {
       for (let cell of this.board) {
-          graph.grid[cell.x][cell.y].p = cell.p;
+          graph.grid[cell.x + offset][cell.y].p = cell.p;
       }
   }
 

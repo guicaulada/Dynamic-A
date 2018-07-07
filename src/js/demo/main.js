@@ -8,12 +8,14 @@ let hexGraph;
 let hexBoard;
 
 // Rect global variables
-let rectLength = 12;
+let rectLength = 13;
 let rectWidth = 40;
 let rectHeight = 40;
 let rectGrid;
 let rectGraph;
 let rectBoard;
+
+let fullGraph;
 
 const __Hexgrid__ = document.createElement('script');
 __Hexgrid__.src = 'js/demo/Hexgrid.js';

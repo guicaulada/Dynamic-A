@@ -1,24 +1,51 @@
 <html style="overflow:hidden">
     <head>
+        <link rel="stylesheet" href="./lib/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/style.css">
+        <script src="./lib/bootstrap.min.js" type="text/javascript"></script>
         <script src="./lib/jquery.min.js" type="text/javascript"></script>
         <script src="./lib/raphael.min.js" type="text/javascript"></script>
         <script src="./js/index.js" type="text/javascript"></script>
     </head>
     <body>
-        <div id="controls">
-            <p>Controls:</p>
-            <p>T - Toggle debug text</p>
-            <p>Enter - Run Astar</p>
-            <p>Space - Clean path</p>
-            <p>Shift + Click - Add start</p>
-            <p>Ctrl + Click - Add end</p>
-            <p>Alt + Click - Connect cells with new neighbor function</p>
+        <div class="col-md fixed-bottom">
+            <div class="row justify-content-center">
+                <div class="card shadow-nohover">
+                    <div class="card-header">
+                        <h5 class="card-title m-0">Controls:</h5>
+                    </div>
+                    <div class="card-block pb-2 pl-3">
+                        <p class="card-text m-0">T - Toggle debug text</p>
+                        <p class="card-text m-0">Enter - Run Astar</p>
+                        <p class="card-text m-0">Space - Clean path</p>
+                        <p class="card-text m-0">Shift + Click - Add start</p>
+                        <p class="card-text m-0">Ctrl + Click - Add end</p>
+                        <p class="card-text m-0">Alt + Click - Connect cells</p>
+                        <p class="card-text m-0">Alt + Shift + Click - Add shared start</p>
+                        <p class="card-text m-0">Alt + Ctrl + Click - Add shared end</p>
+                        <p class="card-text m-0">Alt + Enter - Run shared Astar</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <style>
-            #controls {
-                position: absolute;
-                top: 50%;
-            }
-        </style>
     </body>
+    <style>
+        .card {
+            background: #424242;
+            border: 0px;
+            border-radius: 0.3rem;
+            width: 100%;
+        }
+
+        .card-header {
+            background: #212121;
+        }
+        .card-header::before {
+            content: '';
+            position: absolute;
+            right: 100%;
+            border: 1rem solid transparent;
+            border-right: 1.25rem solid #212121;
+        }
+    </style>
 </html>

@@ -10,7 +10,7 @@ window.onload = () => {
         width: rectWidth,
         height: rectHeight,
         x: 600,
-        y: 15,
+        y: 5,
     });
     rectBoard.drawRectboard();
     rectBoard.addPaperToGraph(rectGraph);
@@ -26,9 +26,15 @@ window.onload = () => {
         side: 25,
         stroke: 3,
         border: 5,
+        x: 5,
+        y: 10,
     });
     hexBoard.drawHexboard();
     hexBoard.addPaperToGraph(hexGraph);
+
+    fullGraph = hexGraph.merge(rectGraph);
+    hexBoard.addPaperToGraph(fullGraph);
+    rectBoard.addPaperToGraph(fullGraph, fullGraph.offset);
 
     // Hide hexagonal grid help text
     $('text').hide();
@@ -63,16 +69,24 @@ document.addEventListener('keydown', (event) => {
     } else if (event.key == 'Enter') {
         console.log('Running Dynamic-A!');
 
-        let hexResult = runDynamicA(hexGraph);
-        if (hexResult) {
-            console.log(`Hex path: ${hexResult} = ${hexResult.cost}`);
-        }
+        if (event.altKey) {
+            let result = runDynamicA(fullGraph);
+            if (result) {
+                console.log(`Full path: ${result} = ${result.cost}`);
+            }
+        } else {
+            let hexResult = runDynamicA(hexGraph);
+            if (hexResult) {
+                console.log(`Hex path: ${hexResult} = ${hexResult.cost}`);
+            }
 
-        let rectResult = runDynamicA(rectGraph);
-        if (rectResult) {
-            console.log(`Rect path: ${rectResult} = ${rectResult.cost}`);
+            let rectResult = runDynamicA(rectGraph);
+            if (rectResult) {
+                console.log(`Rect path: ${rectResult} = ${rectResult.cost}`);
+            }
         }
     } else if (event.key == ' ') {
+        cleanDynamicA(fullGraph);
         cleanDynamicA(hexGraph);
         cleanDynamicA(rectGraph);
         console.log('Path cleaned!');
@@ -87,7 +101,7 @@ document.addEventListener('keyup', (event) => {
         for (let cell of connectedCells[color]) {
             if (cell.weight != 2) {
                 cell.weight = 2;
-                cell.neighbors.push(() => {
+                cell.neighbors.push((graph, cell) => {
                     return connectedCells[color].filter((node) => {
                         return !(node.x == cell.x && node.y == cell.y);
                     });

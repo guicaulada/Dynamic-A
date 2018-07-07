@@ -21,41 +21,42 @@ class Rectgrid {
                     weight: 1,
                     multiplier: 1.14,
                     drawers: [],
-                    neighbors: [(grid) => {
+                    neighbors: [(graph, cell) => {
+                        let grid = graph.grid;
                         let ret = [];
                         // West
-                        if (grid[x - 1] && grid[x - 1][y]) {
-                            ret.push(grid[x - 1][y]);
+                        if (grid[cell.x - 1] && grid[cell.x - 1][cell.y]) {
+                            ret.push(grid[cell.x - 1][cell.y]);
                         }
                         // East
-                        if (grid[x + 1] && grid[x + 1][y]) {
-                            ret.push(grid[x + 1][y]);
+                        if (grid[cell.x + 1] && grid[cell.x + 1][cell.y]) {
+                            ret.push(grid[cell.x + 1][cell.y]);
                         }
                         // South
-                        if (grid[x] && grid[x][y - 1]) {
-                            ret.push(grid[x][y - 1]);
+                        if (grid[cell.x] && grid[cell.x][cell.y - 1]) {
+                            ret.push(grid[cell.x][cell.y - 1]);
                         }
                         // North
-                        if (grid[x] && grid[x][y + 1]) {
-                            ret.push(grid[x][y + 1]);
+                        if (grid[cell.x] && grid[cell.x][cell.y + 1]) {
+                            ret.push(grid[cell.x][cell.y + 1]);
                         }
 
                         // Diagonals
                         // Southwest
-                        if (grid[x - 1] && grid[x - 1][y - 1]) {
-                            ret.push(grid[x - 1][y - 1]);
+                        if (grid[cell.x - 1] && grid[cell.x - 1][cell.y - 1]) {
+                            ret.push(grid[cell.x - 1][cell.y - 1]);
                         }
                         // Southeast
-                        if (grid[x + 1] && grid[x + 1][y - 1]) {
-                            ret.push(grid[x + 1][y - 1]);
+                        if (grid[cell.x + 1] && grid[cell.x + 1][cell.y - 1]) {
+                            ret.push(grid[cell.x + 1][cell.y - 1]);
                         }
                         // Northwest
-                        if (grid[x - 1] && grid[x - 1][y + 1]) {
-                            ret.push(grid[x - 1][y + 1]);
+                        if (grid[cell.x - 1] && grid[cell.x - 1][cell.y + 1]) {
+                            ret.push(grid[cell.x - 1][cell.y + 1]);
                         }
                         // Northeast
-                        if (grid[x + 1] && grid[x + 1][y + 1]) {
-                            ret.push(grid[x + 1][y + 1]);
+                        if (grid[cell.x + 1] && grid[cell.x + 1][cell.y + 1]) {
+                            ret.push(grid[cell.x + 1][cell.y + 1]);
                         }
                         return ret;
                     }],
