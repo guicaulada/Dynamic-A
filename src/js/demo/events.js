@@ -90,6 +90,9 @@ document.addEventListener('keydown', (event) => {
         cleanDynamicA(hexGraph);
         cleanDynamicA(rectGraph);
         console.log('Path cleaned!');
+        if (event.shiftKey) {
+            cleanWalls();
+        }
     }
 });
 

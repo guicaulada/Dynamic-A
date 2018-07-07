@@ -26,7 +26,6 @@ class Astar {
     while (openHeap.size() > 0) {
       // Grab the lowest f(x) to process next.  Heap keeps this sorted for us.
       let currentNode = openHeap.pop();
-      console.log(currentNode)
       // End case -- result has been found, return the traced path.
       if (currentNode === end) {
         return Astar.pathTo(currentNode);
@@ -35,7 +34,6 @@ class Astar {
       currentNode.closed = true;
       // Find all neighbors for the current node.
       let neighbors = graph.neighbors(currentNode);
-      console.log(neighbors.length)
       for (let i = 0, il = neighbors.length; i < il; ++i) {
         let neighbor = neighbors[i];
         if (neighbor.closed || neighbor.isWall()) {

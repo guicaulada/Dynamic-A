@@ -93,9 +93,7 @@ function setEnd(graph, cell) {
 function setWall(graph, cell) {
     if (cell != graph.end && cell != graph.start) {
         if (cell.weight) {
-            cell.p.attr({
-                fill: 'grey'
-            });
+            cell.p.attr({fill: 'grey'});
             cell.weight = 0;
         } else {
             cell.p.attr({fill: 'white'});
@@ -124,6 +122,27 @@ function getFullCell(graph, cell) {
         fullCell = fullGraph.grid[fullGraph.offset + cell.x][cell.y];
     }
     return {graph: fullGraph, cell: fullCell};
+}
+
+/**
+ * Removes all walls
+ */
+function cleanWalls() {
+    for (let node of hexGraph.nodes) {
+        if (!node.weight) {
+            setWall(hexGraph, node);
+        }
+    }
+    for (let node of rectGraph.nodes) {
+        if (!node.weight) {
+            setWall(rectGraph, node);
+        }
+    }
+    for (let node of fullGraph.nodes) {
+        if (!node.weight) {
+            setWall(fullGraph, node);
+        }
+    }
 }
 
 /**
