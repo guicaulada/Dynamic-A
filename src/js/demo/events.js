@@ -9,8 +9,8 @@ window.onload = () => {
     rectBoard = new Rectboard(rectGrid, {
         width: rectWidth,
         height: rectHeight,
-        x: 600,
-        y: 5,
+        x: rectPosX,
+        y: rectPosY,
     });
     rectBoard.drawRectboard();
     rectBoard.addPaperToGraph(rectGraph);
@@ -23,11 +23,11 @@ window.onload = () => {
     hexGrid = new Hexgrid(hexRadius);
     hexGraph = new Graph(hexGrid.nodes);
     hexBoard = new Hexboard(hexGrid, {
-        side: 25,
-        stroke: 3,
-        border: 5,
-        x: 5,
-        y: 10,
+        side: hexSide,
+        stroke: hexStroke,
+        border: hexBorder,
+        x: hexPosX,
+        y: hexPosY,
     });
     hexBoard.drawHexboard();
     hexBoard.addPaperToGraph(hexGraph);

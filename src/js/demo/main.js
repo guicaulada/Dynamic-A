@@ -2,15 +2,22 @@
 let showHexText = false;
 
 // Hex global variables
-let hexRadius = 7;
+let hexRadius = 13;
+let hexSide = 19;
+let hexBorder = 5;
+let hexStroke = 3;
+let hexPosX = 0;
+let hexPosY = 0;
 let hexGrid;
 let hexGraph;
 let hexBoard;
 
 // Rect global variables
-let rectLength = 13;
-let rectWidth = 40;
-let rectHeight = 40;
+let rectLength = 25;
+let rectWidth = 29;
+let rectHeight = 29;
+let rectPosX = 850;
+let rectPosY = 3;
 let rectGrid;
 let rectGraph;
 let rectBoard;
