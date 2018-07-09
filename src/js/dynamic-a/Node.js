@@ -1,7 +1,6 @@
 
 /**
  * Implementa uma celula de grafo
- * @class Node
  */
 class Node {
   /**
