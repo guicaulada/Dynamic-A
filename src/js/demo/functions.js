@@ -34,6 +34,7 @@ function runDynamicA(graph) {
         let result = Astar.search(graph, graph.start, graph.end);
         paintResult(result);
         repaintImportantCells(graph);
+        repaintImportantCells(fullGraph);
         return result;
     }
 }
@@ -45,6 +46,7 @@ function runDynamicA(graph) {
 function cleanDynamicA(graph) {
     graph.cleanDirty();
     repaintImportantCells(graph);
+    repaintImportantCells(fullGraph);
 }
 
 /**
