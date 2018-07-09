@@ -20,7 +20,6 @@ class Rectgrid {
                     y: y,
                     weight: 1,
                     multiplier: 1.14,
-                    drawers: [],
                     neighbors: [(graph, cell) => {
                         let grid = graph.grid;
                         let ret = [];
