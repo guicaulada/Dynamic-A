@@ -1,87 +1,71 @@
 /**
- * Implements the Astar algorithm
+ * Implementa o algoritmo Astar
  * @class Astar
  */
 class Astar {
   /**
-  * Perform an A* Search on a graph given a start and end node.
+  * Realiza a busca em um grafo do tipo Graph dado um Node de inicio e fim.
   * @static
-  * @param {Graph} graph
-  * @param {Node} start
-  * @param {Node} end
-  * @param {Object} [options]
-  * @param {bool} [options.closest] Specifies whether to return the path to the closest node if the target is unreachable.
-  * @param {Function} [options.heuristic] Heuristic function (see astar.heuristics).
-  * @return {Array} List of nodes that are part of the path
+  * @param {Graph} graph Grafo que sera analisado
+  * @param {Node} start Node inicial
+  * @param {Node} end Node final
+  * @return {Array} Lista de nodes que compoe o caminho
   */
-  static search(graph, start, end, options) {
+  static search(graph, start, end) {
     graph.cleanDirty();
-    options = options || {};
-    let closest = options.closest || false;
     let openHeap = Astar.getHeap();
-    let closestNode = start; // set the start node to be the closest if required
     start.h = start.heuristic(start, end);
     graph.markDirty(start);
     openHeap.push(start);
     while (openHeap.size() > 0) {
-      // Grab the lowest f(x) to process next.  Heap keeps this sorted for us.
+      // Adquire o node de menor f para processar. Organizado pela heap
       let currentNode = openHeap.pop();
-      // End case -- result has been found, return the traced path.
+      // Caso o node atual seja igual ao node final, resultado encontrado, retorna o caminho
       if (currentNode === end) {
         return Astar.pathTo(currentNode);
       }
-      // Normal case -- move currentNode from open to closed, process each of its neighbors.
+      // Caso o node atual seja diferente do final, marca node como visitado, processa cada vizinho
       currentNode.closed = true;
-      // Find all neighbors for the current node.
+      // Encontra todos so vizinhos do node atual
       let neighbors = graph.neighbors(currentNode);
       for (let i = 0, il = neighbors.length; i < il; ++i) {
         let neighbor = neighbors[i];
         if (neighbor.closed || neighbor.isWall()) {
-          // Not a valid node to process, skip to next neighbor.
+          // Node invalido, pule para o proximo vizinho
           continue;
         }
-        // The g score is the shortest distance from start to current node.
-        // We need to check if the path we have arrived at this neighbor is the shortest one we have seen yet.
+        // O valor g e o custo do menor caminho do inicio ao node atual
+        // Precisamos verificar se o caminho pelo qual chegamos a este node e o menor que ja vimos
         let gScore = currentNode.g + neighbor.getCost(currentNode);
         let beenVisited = neighbor.visited;
         if (!beenVisited || gScore < neighbor.g) {
-          // Found an optimal (so far) path to this node.  Take score for node to see how good it is.
+          // Encontro o melhor caminho ate o momento ate esse node. Verifica custo
           neighbor.visited = true;
           neighbor.parent = currentNode;
           neighbor.h = neighbor.h || neighbor.heuristic(neighbor, end);
           neighbor.g = gScore;
           neighbor.f = neighbor.g + neighbor.h;
           graph.markDirty(neighbor);
-          if (closest) {
-            // If the neighbour is closer than the current closestNode or if it's equally close but has
-            // a cheaper path than the current closest node then it becomes the closest node
-            if (neighbor.h < closestNode.h || (neighbor.h === closestNode.h && neighbor.g < closestNode.g)) {
-              closestNode = neighbor;
-            }
-          }
           if (!beenVisited) {
-            // Pushing to heap will put it in proper place based on the 'f' value.
+            // Acrescenta a heap na sua posicao correta baseada em seu 'f'
             openHeap.push(neighbor);
           } else {
-            // Already seen the node, but since it has been rescored we need to reorder it in the heap
+            // Node ja foi visitado mas como seu valor f mudou temos que recalcular sua posicao na heap
             openHeap.rescoreElement(neighbor);
           }
         }
       }
     }
-    if (closest) {
-      return Astar.pathTo(closestNode);
-    }
-    // No result was found - empty array signifies failure to find path.
+    // Nenhum caminho foi encontrado
     return [];
   }
 
   /**
-   * Returns the path from starting node to current node
+   * Retorna o caminho do Node inicial ao Node atual
    * @static
    * @memberof Astar
    * @param {Node} node
-   * @return {Array} List of nodes to current node
+   * @return {Array} Lista de nodes caminho para node atual
    */
   static pathTo(node) {
     let curr = node;
@@ -95,10 +79,10 @@ class Astar {
   }
 
   /**
-   * Defines a new binary heap node.f => node
+   * Define uma nova heap binaria node.f => node
    * @static
    * @memberof Astar
-   * @return {BinaryHeap} Binary heap of nodes
+   * @return {BinaryHeap} Heap de Node
    */
   static getHeap() {
     return new BinaryHeap((node) => {
@@ -107,10 +91,10 @@ class Astar {
   }
 
   /**
-   * Cleans a node of all changes
+   * Limpa um Node de todas as mudancas
    * @static
    * @memberof Astar
-   * @param {Node} node Node to be cleaned
+   * @param {Node} node Node a ser limpado
    */
   static cleanNode(node) {
     node.f = 0;

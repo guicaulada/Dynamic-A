@@ -1,13 +1,13 @@
 
 /**
- * Implements a binary heap
+ * Implementa uma heap
  * @class BinaryHeap
  */
 class BinaryHeap {
   /**
-   * Creates an instance of BinaryHeap.
-   * @param {*} scoreFunction
+   * Cria uma instancia de uma heap
    * @memberof BinaryHeap
+   * @param {*} scoreFunction Calculo de pontuacao e posicionamento
    */
   constructor(scoreFunction) {
     this.content = [];
@@ -15,29 +15,29 @@ class BinaryHeap {
   }
 
   /**
-   * Adds a new element to the end
-   * @param {*} element
+   * Adiciona um novo elemento ao final
    * @memberof BinaryHeap
+   * @param {*} element Elemento
    */
   push(element) {
-    // Add the new element to the end of the array.
+    // Adiciona um novo elemento ao final da lista
     this.content.push(element);
-    // Allow it to sink down.
+    // Reposiciona-o de acordo
     this.sinkDown(this.content.length - 1);
   }
 
   /**
-   * Returns and removes the first relement
-   * @return {*} First element
+   * Retorna e remove o primeiro elemento
    * @memberof BinaryHeap
+   * @return {*} Primeiro element
    */
   pop() {
-    // Store the first element so we can return it later.
+    // Guarda o primeiro elemento para que possamos retorna-lo
     let result = this.content[0];
-    // Get the element at the end of the array.
+    // Adquire o elemento no final da lista
     let end = this.content.pop();
-    // If there are any elements left, put the end element at the
-    // start, and let it bubble up.
+    // Se existem elementos na lista coloque o elemento no inicio
+    // Reajuste sua posicao
     if (this.content.length > 0) {
       this.content[0] = end;
       this.bubbleUp(0);
@@ -46,14 +46,14 @@ class BinaryHeap {
   }
 
   /**
-   * Removes an element
-   * @param {*} node The element to be removed
+   * Remove um elemento
    * @memberof BinaryHeap
+   * @param {*} node Elemento a ser removido
    */
   remove(node) {
     let i = this.content.indexOf(node);
-    // When it is found, the process seen in 'pop' is repeated
-    // to fill up the hole.
+    // Quando encontrado colocamos o ultimo elmento em sua posicao
+    // Reajustamos sua posicao
     let end = this.content.pop();
     if (i !== this.content.length - 1) {
       this.content[i] = end;
@@ -66,76 +66,76 @@ class BinaryHeap {
   }
 
   /**
-   * Returns the size of the heap
-   * @return {Number} The lenght of the content array
+   * Retorna o tamanho da heap
    * @memberof BinaryHeap
+   * @return {Number} O tamanho da lista
    */
   size() {
     return this.content.length;
   }
 
   /**
-   * Recalculates an element position
-   * @param {*} node
+   * Recalcula a posicao de um elemento
    * @memberof BinaryHeap
+   * @param {*} node
    */
   rescoreElement(node) {
     this.sinkDown(this.content.indexOf(node));
   }
 
   /**
-   * Moves an element down the list until it's position is found
-   * @param {*} n Element index
+   * Diminui o indice de um elemento ate que sua posicao seja encontrada
+   * @param {*} n Indice do elemento
    * @memberof BinaryHeap
    */
   sinkDown(n) {
-    // Fetch the element that has to be sunk.
+    // Adquire o elemento que tem que ser afundado.
     let element = this.content[n];
-    // When at 0, an element can not sink any further.
+    // Quando sua posicao for 0 nao pode diminuir mais.
     while (n > 0) {
-      // Compute the parent element's index, and fetch it.
+      // Calcula o indice do parente e o adquire.
       let parentN = ((n + 1) >> 1) - 1;
       let parent = this.content[parentN];
-      // Swap the elements if the parent is greater.
+      // Troca os elementos de posicao se o calculo de pontuacao do parente for maior.
       if (this.scoreFunction(element) < this.scoreFunction(parent)) {
         this.content[parentN] = element;
         this.content[n] = parent;
-        // Update 'n' to continue at the new position.
+        // Atualiza o indice para a nova posicao
         n = parentN;
       } else {
-        break; // Found a parent that is less, no need to sink any further.
+        break; // Encontrou um parente que possui calculo menor, nao precisa afundar mais
       }
     }
   }
 
   /**
-   * Moves an element up the list until it's position is found
-   * @param {*} n Element index
+   * Aumenta o indice de um elemento ate que sua posicao seja encontrada
+   * @param {*} n Indice do elemento
    * @memberof BinaryHeap
    */
   bubbleUp(n) {
-    // Look up the target element and its score.
+    // Calcula a pontuacao do elemento
     let length = this.content.length;
     let element = this.content[n];
     let elemScore = this.scoreFunction(element);
     while (true) {
-      // Compute the indices of the child elements.
+      // Calcula o indice de seus elementos filhos
       let child2N = (n + 1) << 1;
       let child1N = child2N - 1;
-      // This is used to store the new position of the element, if any.
+      // Guarda a nova posicao do elemento se houver
       let swap = null;
       let child1Score;
-      // If the first child exists (is inside the array)...
+      // Se o primeiro filho existir
       if (child1N < length) {
-        // Look it up and compute its score.
+        // Calcule sua pontuacao
         let child1 = this.content[child1N];
         child1Score = this.scoreFunction(child1);
-        // If the score is less than our element's, we need to swap.
+        // Se a pontuacao for menor do que a do elemento alvo guardamos o indice
         if (child1Score < elemScore) {
           swap = child1N;
         }
       }
-      // Do the same checks for the other child.
+      // O mesmo para o outro filho
       if (child2N < length) {
         let child2 = this.content[child2N];
         let child2Score = this.scoreFunction(child2);
@@ -143,13 +143,13 @@ class BinaryHeap {
           swap = child2N;
         }
       }
-      // If the element needs to be moved, swap it, and continue.
+      // Se o elemento precisar trocar de posicao, troque e continue
       if (swap !== null) {
         this.content[n] = this.content[swap];
         this.content[swap] = element;
         n = swap;
       } else {
-        break; // Otherwise, we are done.
+        break; // Se nao precisar, entao fim
       }
     }
   }

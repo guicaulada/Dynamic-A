@@ -1,11 +1,11 @@
 
 /**
- * Implements a node
+ * Implementa uma celula de grafo
  * @class Node
  */
 class Node {
   /**
-   * Creates an instance of Node.
+   * Cria uma instancia de um Node.
    * @param {Number} x
    * @param {Number} y
    * @param {Number} weight
@@ -25,13 +25,13 @@ class Node {
   }
 
   /**
-   * Get cost to move to node, uses multiplier if x and y are different
+   * Adquire custo para se mover ate node, utiliza multiplier se x e y forem diferentes
    * @memberof Node
-   * @param {Node} fromNeighbor
-   * @return {Number} Cost to move to node
+   * @param {Node} fromNeighbor Node vizinho
+   * @return {Number} Custo para se mover
    */
   getCost(fromNeighbor) {
-    // Take multiplier weight into consideration.
+    // Leva multiplier em consideracao.
     if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
       return this.weight * this.multiplier;
     }
@@ -39,8 +39,8 @@ class Node {
   }
 
   /**
-   * Checks if a node is valid
-   * @return {Boolean} If node is valid or not (true/false)
+   * Checa se um node e valido
+   * @return {Boolean} Se valido ou nao (true/false)
    * @memberof Node
    */
   isWall() {
@@ -48,8 +48,8 @@ class Node {
   }
 
   /**
-   * Represents node in a string
-   * @return {String} String representing node
+   * Representa o node em uma string
+   * @return {String} Representacao em string
    * @memberof Node
    */
   toString() {

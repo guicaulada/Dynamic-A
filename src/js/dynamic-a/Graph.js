@@ -1,15 +1,13 @@
 
 /**
- * Implements a graph memory structure
+ * Implementa um grafo
  * @class Graph
  */
 class Graph {
   /**
-   * Creates an instance of Graph.
+   * Cria uma instancia de um grafo
    * @memberof Graph
-   * @param {Array} cells  Array of input cells
-   * @param {Object} [options]
-   * @param {bool} [options.diagonal] Specifies whether diagonal moves are allowed
+   * @param {Array} cells  Lista de objetos com informacoes para os Nodes
    */
   constructor(cells) {
     this.nodes = [];
@@ -25,7 +23,7 @@ class Graph {
   }
 
   /**
-   * Cleans all nodes of the Graph with Astar
+   * Marca todos os nodes como nao visitados
    * @memberof Graph
    */
   init() {
@@ -36,33 +34,33 @@ class Graph {
   }
 
   /**
-   * Cleans all dirty nodes of the Graph with Astar
+   * Limpa todos os nodes visitados do grafo
    * @memberof Graph
    */
   cleanDirty() {
     for (let i = 0; i < this.dirtyNodes.length; i++) {
       let node = this.dirtyNodes[i];
       Astar.cleanNode(node);
-      node.p.attr({fill: (node.weight === 0) ? 'grey' : 'white'}); // Paint cell in demo
+      node.p.attr({fill: (node.weight === 0) ? 'grey' : 'white'}); // Pinta node na demo
     }
     this.dirtyNodes = [];
   }
 
   /**
-   * Mark the node as dirty
+   * Marca o Node como visitado
    * @memberof Graph
    * @param {Node} node
    */
   markDirty(node) {
     this.dirtyNodes.push(node);
-    node.p.attr({fill: 'cyan'}); // Paint cell in demo
+    node.p.attr({fill: 'cyan'}); // Pinta node na demo
   }
 
   /**
-   * Returns all neighbors based on node
+   * Retorna todos os vizinhos de um node
    * @memberof Graph
-   * @param {Node} node
-   * @return {Array} List of connected nodes
+   * @param {Node} node Node para analisar
+   * @return {Array} Lista de vizinhos
    */
   neighbors(node) {
     let neighbors = [];
@@ -75,11 +73,11 @@ class Graph {
   }
 
   /**
-   * Merges another graph adding it's x and y
+   * Retorna esse grafo fundido a outro a partir de um offset
    * @memberof Graph
-   * @param {Graph} graph
-   * @param {Number} extraOffset
-   * @return {Graph} Merged graphs
+   * @param {Graph} graph Grafo para fundir
+   * @param {Number} extraOffset Offset extra
+   * @return {Graph} Grafo fundido
    */
   merge(graph, extraOffset = 0) {
     let fullGraph = new Graph([]);
@@ -102,9 +100,9 @@ class Graph {
   }
 
   /**
-   * Displays the graph in a string
+   * Representa o grafo em uma string
    * @memberof Graph
-   * @return {String} String representation of the graph
+   * @return {String} Representacao em string
    */
   toString() {
     let graphString = [];
