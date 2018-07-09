@@ -50,3 +50,7 @@ p, blockquote {
     line-height: 1.5;
     letter-spacing: .25px;
 }
+
+.pointer:hover {
+    cursor: pointer;
+}

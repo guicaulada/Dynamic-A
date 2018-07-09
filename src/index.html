@@ -1,5 +1,6 @@
 <html style="overflow:hidden">
     <head>
+        <title>Dynamic-A</title>
         <link rel="stylesheet" href="./lib/bootstrap.min.css">
         <link rel="stylesheet" href="./css/style.css">
         <script src="./lib/jquery.min.js" type="text/javascript"></script>
@@ -7,24 +8,43 @@
         <script src="./js/index.js" type="text/javascript"></script>
     </head>
     <body>
-        <div class="col-md fixed-bottom">
-            <div class="row justify-content-center">
+        <div class="row dark-row justify-content-center">
+            <div class="col-md fixed-bottom mb-1">
                 <div class="card shadow-nohover">
-                    <div class="card-header">
-                        <h5 class="card-title m-0">Controls:</h5>
+                    <div id="controls" class="card-header pointer">
+                        <h5 class="card-title m-0">Controls</h5>
                     </div>
-                    <div class="card-block pb-2 pl-3">
-                        <p class="card-text m-0">Enter - Run Astar</p>
-                        <p class="card-text m-0">Space - Clean path</p>
-                        <p class="card-text m-0">Click - Add/remove wall</p>
-                        <p class="card-text m-0">Shift + Space - Clean path and walls</p>
-                        <p class="card-text m-0">Shift + Click - Add/remove start</p>
-                        <p class="card-text m-0">Ctrl + Click - Add/remove end</p>
-                        <p class="card-text m-0">Alt + Click - Add/remove connected cells</p>
-                        <p class="card-text m-0">Alt + Shift + Click - Add/remove shared start</p>
-                        <p class="card-text m-0">Alt + Ctrl + Click - Add/remove shared end</p>
-                        <p class="card-text m-0">Alt + Enter - Run shared Astar</p>
-                        <p class="card-text m-0">T - Toggle debug text</p>
+                    <div class="card-body m-0 p-0 d-inline-block">
+                        <div class="card-block pb-2 pl-3 control-text float-left">
+                            <p class="card-text m-0">Enter - Run Astar</p>
+                            <p class="card-text m-0">Space - Clean path</p>
+                            <p class="card-text m-0">Click - Add/remove wall</p>
+                            <p class="card-text m-0">Shift + Space - Clean path and walls</p>
+                            <p class="card-text m-0">Shift + Click - Add/remove start</p>
+                            <p class="card-text m-0">Ctrl + Click - Add/remove end</p>
+                        </div>
+                        <div class="card-block pb-2 pl-3 ml-3 mt-3 control-text float-left">
+                            <p class="card-text m-0">Alt + Click - Add/remove connected cells</p>
+                            <p class="card-text m-0">Alt + Shift + Click - Add/remove shared start</p>
+                            <p class="card-text m-0">Alt + Ctrl + Click - Add/remove shared end</p>
+                            <p class="card-text m-0">Alt + Enter - Run shared Astar</p>
+                        </div>
+                        <div class="card-block pb-2 pl-3 ml-3 mt-3 control-text float-left">
+                            <p class="card-text m-0">H - Toggle hexgrid heuristic</p>
+                            <p class="card-text m-0">R - Toggle rectgrid heuristic</p>
+                            <p class="card-text m-0">C - Toggle shared grid connection</p>
+                            <p class="card-text m-0">T - Toggle debug text</p>
+                        </div>
+                        <div class="card-block pb-2 pl-3 ml-3 mt-4 control-text float-left">
+                            <p id="hexH" class="card-text m-0">Hex Heuristic: Diagonal</p>
+                            <p id="rectH" class="card-text m-0">Rect Heuristic: Manhattan</p>
+                            <p id="conn" class="card-text m-0">Connected: No</p>
+                        </div>
+                        <div class="card-block pb-2 pl-3 ml-3 mt-4 control-text float-left">
+                            <p id="hexP" class="card-text m-0">Last Hex Path: --</p>
+                            <p id="rectP" class="card-text m-0">Last Rect Path: --</p>
+                            <p id="fullP" class="card-text m-0">Last Shared Path: --</p>
+                        </div>
                     </div>
                 </div>
             </div>

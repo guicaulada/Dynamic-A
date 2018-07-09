@@ -2,6 +2,10 @@
 let connectedCells = {};
 let tempCells = [];
 
+let desconnected = 1;
+let rectManhattan = 1;
+let hexManhattan = 0;
+
 window.onload = () => {
     // Load rectangular grid for demo
     rectGrid = new Rectgrid(rectLength);
@@ -32,7 +36,7 @@ window.onload = () => {
     hexBoard.drawHexboard();
     hexBoard.addPaperToGraph(hexGraph);
 
-    fullGraph = hexGraph.merge(rectGraph);
+    fullGraph = hexGraph.merge(rectGraph, desconnected);
     hexBoard.addPaperToGraph(fullGraph);
     rectBoard.addPaperToGraph(fullGraph, fullGraph.offset);
 
@@ -66,6 +70,39 @@ document.addEventListener('keydown', (event) => {
         } else {
             $('text').hide();
         }
+    } else if (event.key == 'h') {
+        if (hexManhattan) {
+            hexManhattan = 0;
+            setDiagonal(hexGraph);
+            $('#hexH').html('Hex Heuristic: Diagonal');
+        } else {
+            hexManhattan = 1;
+            setManhattan(hexGraph);
+            $('#hexH').html('Hex Heuristic: Manhattan');
+        }
+    } else if (event.key == 'r') {
+        if (rectManhattan) {
+            rectManhattan = 0;
+            setDiagonal(rectGraph);
+            $('#rectH').html('Rect Heuristic: Diagonal');
+        } else {
+            rectManhattan = 1;
+            setManhattan(rectGraph);
+            $('#rectH').html('Rect Heuristic: Manhattan');
+        }
+    } else if (event.key == 'c') {
+        cleanDynamicA(fullGraph);
+        if (fullGraph.start) setStart(fullGraph, fullGraph.start);
+        if (fullGraph.end) setEnd(fullGraph, fullGraph.end);
+        desconnected = (desconnected) ? 0 : 1;
+        fullGraph = hexGraph.merge(rectGraph, desconnected);
+        if (desconnected) {
+            $('#conn').html('Connected: No');
+        } else {
+            $('#conn').html('Connected: Yes');
+        }
+        hexBoard.addPaperToGraph(fullGraph);
+        rectBoard.addPaperToGraph(fullGraph, fullGraph.offset);
     } else if (event.key == 'Enter') {
         console.log('Running Dynamic-A!');
 
@@ -73,16 +110,19 @@ document.addEventListener('keydown', (event) => {
             let result = runDynamicA(fullGraph);
             if (result) {
                 console.log(`Full path: ${result} = ${result.cost}`);
+                if (result.cost) $('#fullP').html('Last Shared Path: ' + result.cost);
             }
         } else {
             let hexResult = runDynamicA(hexGraph);
             if (hexResult) {
                 console.log(`Hex path: ${hexResult} = ${hexResult.cost}`);
+                if (hexResult.cost) $('#hexP').html('Last Hex Path: ' + hexResult.cost);
             }
 
             let rectResult = runDynamicA(rectGraph);
             if (rectResult) {
                 console.log(`Rect path: ${rectResult} = ${rectResult.cost}`);
+                if (rectResult.cost) $('#rectP').html('Last Rect Path: ' + rectResult.cost);
             }
         }
     } else if (event.key == ' ') {
@@ -122,5 +162,15 @@ document.addEventListener('keyup', (event) => {
             }
         }
         tempCells = [];
+    }
+});
+
+$('#controls').click(() => {
+    let hidden = $('.control-text').is(':hidden');
+    console.log(hidden);
+    if (hidden) {
+        $('.control-text').show();
+    } else {
+        $('.control-text').hide();
     }
 });

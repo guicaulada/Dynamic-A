@@ -78,9 +78,10 @@ class Graph {
    * Merges another graph adding it's x and y
    * @memberof Graph
    * @param {Graph} graph
+   * @param {Number} extraOffset
    * @return {Graph} Merged graphs
    */
-  merge(graph) {
+  merge(graph, extraOffset = 0) {
     let fullGraph = new Graph([]);
     for (let node of this.nodes) {
       let cell = new Node(node.x, node.y, node.weight, node.multiplier, node.neighbors, node.heuristic);
@@ -88,7 +89,7 @@ class Graph {
       fullGraph.grid[cell.x][cell.y] = cell;
       fullGraph.nodes.push(cell);
     }
-    let offset = fullGraph.grid.length;
+    let offset = fullGraph.grid.length + extraOffset;
     for (let node of graph.nodes) {
       let cell = new Node(offset + node.x, node.y, node.weight, node.multiplier, node.neighbors, node.heuristic);
       if (!fullGraph.grid[cell.x]) fullGraph.grid[cell.x] = [];

@@ -48,6 +48,64 @@ function cleanDynamicA(graph) {
 }
 
 /**
+ * Set's all nodes to use the diagonal heuristic
+ * @param {Graph} graph
+ */
+function setDiagonal(graph) {
+    let diagonal = (pos0, pos1) => {
+        // Diagonal
+        let D = 1;
+        let D2 = Math.sqrt(2);
+        let d1 = Math.abs(pos1.x - pos0.x);
+        let d2 = Math.abs(pos1.y - pos0.y);
+        return (D * (d1 + d2)) + ((D2 - (2 * D)) * Math.min(d1, d2));
+    };
+    for (let node of graph.nodes) {
+        node.heuristic = diagonal;
+    }
+    let offset = (graph == hexGraph) ? 0 : fullGraph.offset;
+    let limit = (graph == hexGraph) ? fullGraph.offset : fullGraph.grid.length;
+    for (let x = offset; x < limit; x++) {
+        if (fullGraph.grid[x]) {
+            for (let y = 0; y < fullGraph.grid[x].length; y++) {
+                let node = fullGraph.grid[x][y];
+                if (node) {
+                    node.heuristic = diagonal;
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Set's all nodes to use the manhattan heuristic
+ * @param {Graph} graph
+ */
+function setManhattan(graph) {
+    let manhattan = (pos0, pos1) => {
+        // Manhattan
+        let d1 = Math.abs(pos1.x - pos0.x);
+        let d2 = Math.abs(pos1.y - pos0.y);
+        return d1 + d2;
+    };
+    for (let node of graph.nodes) {
+        node.heuristic = manhattan;
+    }
+    let offset = (graph == hexGraph) ? 0 : fullGraph.offset;
+    let limit = (graph == hexGraph) ? fullGraph.offset : fullGraph.grid.length;
+    for (let x = offset; x < limit; x++) {
+        if (fullGraph.grid[x]) {
+            for (let y = 0; y < fullGraph.grid[x].length; y++) {
+                let node = fullGraph.grid[x][y];
+                if (node) {
+                    node.heuristic = manhattan;
+                }
+            }
+        }
+    }
+}
+
+/**
  * Makes a cell start
  * @param {Graph} graph The graph the cell is on
  * @param {Object} cell The cell that is being clicked
