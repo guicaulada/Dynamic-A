@@ -27,7 +27,7 @@
 
 \begin{abstract}
 The A* algorithm is the most used in the game and robotics industry, although it is
-one of the best pathfinding algorithms out there, the pre-processing necessary in its
+one of the best path finding algorithms out there, the preprocessing necessary in its
 original implementation makes it hard to execute this algorithm in a dynamic environment.
 To address that issue, this paper explores the possibility of making A* more flexible and
 dynamic, so it can adapt to the terrain and other dynamic objects that can be added to the map.
@@ -44,27 +44,17 @@ dinâmicos que podem ser inseridos no mapa.
 
 \section{Introdução}
 A busca do menor caminho é um dos maiores problemas na industria de jogos e robótica.
-Entre todos os algoritmos desenvolvidos para solucionar este problema o mais popular de todos é o A*.
-O algoritmo A* tem sido cada vez mais optimizado, varias modificações e outras versões do algoritmo foram surgindo, 
-buscando sempre aumentar sua velocidade e diminuir seu consumo de memoria, sem perder precisão \cite{modern}. Em busca de tornar o
-algoritmo mais flexível e adaptável, este artigo sugere uma técnica de optimização que envolve a definição de tipos
-para as células do mapa que mudam a forma com que o algoritmo encontra seus vizinhos, adaptando o algoritmo as
-diferentes propriedades do mapa.
+Entre todos os algoritmos desenvolvidos para solucionar este problema o mais popular de todos é o A*. O algoritmo A* tem sido cada vez mais optimizado, varias modificações e outras versões do algoritmo foram surgindo, buscando sempre aumentar sua velocidade e diminuir seu consumo de memoria, sem perder precisão \cite{modern}. Em busca de tornar o
+algoritmo mais flexível e adaptável, este artigo sugere uma técnica de optimização que envolve a definição de tipos para as células do mapa que mudam a forma com que o algoritmo encontra seus vizinhos, adaptando o algoritmo as diferentes propriedades do mapa.
 
 \section{Algoritmos de busca}
-Existem dois tipos de algoritmos de busca de menor caminho, não-direcionados, como a busca em largura ou em profundidade,
-estes algoritmos não possuem nenhuma heurística, eles correm cegamente pelo mapa, ja os algoritmos direcionados como o Dijkstra e o A*
-tentam escolher a melhor rota para seu destino. algoritmos direcionados realizam mais iterações do que os não-direcionados,
-entretanto eles retornam sempre o menor caminho, para qual é dado maior importância \cite{computer}.
+Existem dois tipos de algoritmos de busca de menor caminho, não-direcionados, como a busca em largura ou em profundidade, estes algoritmos não possuem nenhuma heurística, eles correm cegamente pelo mapa e não consideram o custo do movimento para a célula vizinha, ja os algoritmos direcionados como o Dijkstra e o A* tentam escolher a melhor rota para seu destino. Algoritmos direcionados realizam mais iterações do que os não-direcionados, entretanto eles retornam sempre o menor caminho, para qual é dado maior importância. \cite{computer}
 
 \newpage
 
 \subsection{Algoritmo A*}
-O algoritmo A* seleciona uma célula inicial, analisa cada uma das células vizinhas e verifica uma estimativa do custo da rota ate a célula
-destino a partir daquela célula vizinha. Armazenando em cada célula o custo do caminho ate ela e a distancia estimada dela ate a célula destino,
-o algoritmo A* mistura propriedades de dois algoritmos de busca, Dijkstra e "Melhor-Primeiro". Ele depende de uma função heurística
-que calcula esta estimativa, quanto mais precisa a função heurística, maior a garantia de que o algoritmo retornara o menor caminho \cite{smart}.\\
-O funcionamento do A* em pseudocódigo \cite{computer}:\\
+O algoritmo A* seleciona uma célula inicial, analisa cada uma das células vizinhas e verifica uma estimativa do custo da rota ate a célula destino a partir daquela célula vizinha. Armazenando em cada célula o custo do caminho ate ela e a distancia estimada dela ate a célula destino, misturando propriedades de dois algoritmos de busca, Dijkstra e "Melhor-Primeiro". Ele depende de uma função heurística que calcula esta estimativa, quanto mais precisa a função heurística, maior a garantia de que o algoritmo retornara o menor caminho. \cite{smart}\\
+O funcionamento do A* em pseudocódigo:\\
 \hspace*{10mm}g - custo para chegar ate a célula\\
 \hspace*{10mm}h - estimativa da distancia ate o destino\\
 \hspace*{10mm}f - soma de g e h, estimativa de qual sera o menor caminho\\\\
@@ -82,6 +72,7 @@ O funcionamento do A* em pseudocódigo \cite{computer}:\\
 \hspace*{10mm}\hspace{10mm}\hspace{10mm}iii. Se não estiver em nenhuma, adiciona-se C a lista de células abertas.\\
 \hspace*{10mm}\hspace{10mm}c. Repete-se a etapa 5 para todos os vizinhos de B.\\
 \hspace*{10mm}6. Repete-se a partir da etapa 4.
+\cite{computer}
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.6\textwidth]{astar.png}
@@ -100,11 +91,10 @@ do algoritmo. Quanto mais agentes executando o algoritmo, mais recursos de proce
 Um dos maiores limitadores na industria de jogos seria o algoritmo A* e o quanto esta industria depende dele. Invés de desenvolverem novos conceitos,
 desenvolvedores preferem modificar suas ideias iniciais para se encaixarem a estas limitações, muitas vezes diminuindo o potencial do produto final \cite{computer}.
 
-\subsection{Optimização}
+\section{Optimização}
 Adicionando a cada célula do algoritmo um tipo que informa ao algoritmo como interpretar os vizinhos desta célula especifica.
 Podemos criar células de tipo hexagonais, ou quadradas, ou de qualquer tipo, afinal estas grades de células hexagonais e quadradas com as quais estamos acostumados são
-apenas representações dos vizinhos de cada célula através de barreiras físicas, nada impede a criação de um tipo de célula que possua uma especie de túnel que a conecte com uma outra
-célula que não esta conecta fisicamente a ela. Utilizando esta técnica, é possível a criação de um algoritmo A* que se adapte a qualquer tipo de célula que esta sendo analisada pelo algoritmo.
+apenas representações dos vizinhos de cada célula através de barreiras físicas, nada impede a criação de um tipo de célula que possua uma especie de túnel que a conecte com uma outra célula que não esta conectada fisicamente a ela. Utilizando esta técnica, é possível a criação de um algoritmo A* que se adapte a qualquer tipo de célula que esta sendo analisada pelo algoritmo.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.7\textwidth]{optimizacao.png}
@@ -113,10 +103,14 @@ célula que não esta conecta fisicamente a ela. Utilizando esta técnica, é possív
 	\label{fig:optimizacao}
 \end{figure}
 
+{\setlength{\parindent}{0cm}
+Ao comparar o algoritmo optimizado com o padrão notamos que a diferença no uso de memoria era minima e so causaria impacto se o numero de células fosse muito alto, devido a possibilidade de células com funções heurísticas diferentes a qualidade destas funções definirão a precisão do resultado final.
+}
+
 \newpage
 
 \subsection{Implementação}
-As grades retangulares, hexagonais, octagonais, de diferentes formatos, são apenas representações de grafos de uma maneira visual, cada uma de suas celulas podem ser representadas como pontos em um grafo, de maneira que suas conexoes representam suas celulas vizinhas, estas conexoes podem ser modificadas de acordo com o tipo da celula.
+As grades retangulares, hexagonais, octogonais, de diferentes formatos, são apenas representações de grafos de uma maneira visual, cada uma de suas células podem ser representadas como pontos em um grafo, de maneira que suas conexões representam suas células vizinhas, estas conexões podem ser modificadas de acordo com o tipo da célula.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.7\textwidth]{comparacao.png}
@@ -124,10 +118,18 @@ As grades retangulares, hexagonais, octagonais, de diferentes formatos, são apen
 		no formato de um grafo.}
 	\label{fig:comparacao}
 \end{figure}
-Para implementar a optimização sugerida, criamos uma classe grafo, que possui elementos da classe célula, cada célula possui funções que dizem sua posição no grafo, seu custo, se é valida ou não, assim como o seu tipo, que define como o grafo calculara os vizinhos da quela célula de acordo com sua posição.
 
-\subsection{Conclusão por enquanto...}
-Utilizando está técnica de optimização podemos definir varios tipos diferentes de células, não necessariamente formando grids, seus vizinhos podem ser definidos fora do escopo de suas barreiras fisícas abrindo diversas possibilidades para organização de um mapa de maneira que o algoritmo de busca de menor caminho levará em consideração tunneis e outros tipos de células que estão conectados a células que não são suas vizinhas físicamente.
+{\setlength{\parindent}{0cm}
+Para implementar a optimização sugerida, utilizamos uma linguagem orientada a objetos e criamos uma classe grafo, que possui elementos da classe célula, cada célula possui funções que dizem sua posição no grafo, seu custo, se é valida ou não, assim como o seu tipo, que define como o grafo calculara os vizinhos da quela célula de acordo com sua posição.
+}
+
+\subsection{Utilidade}
+Este algoritmo poderia ser utilizado em diferentes áreas para a criação de mapas
+que mudam os dados de suas células dinamicamente. Na área de jogos um mapa dinâmico abre um leque de possibilidades podendo mudar o comportamento da busca de menor caminho dos personagens presentes no jogo. Existem também aplicações no mundo real, no GPS o algoritmo poderia conectar estacoes de ônibus e oferecer o menor caminho por transporte publico, ou poderia mudar as funções heurísticas do mapa de acordo com o tipo de viagem selecionada mais rápida ou com menos consumo de gasolina. 
+
+
+\section{Conclusão}
+Utilizando está técnica de optimização podemos definir vários tipos diferentes de células, não necessariamente formando grades, seus vizinhos podem ser definidos fora do escopo de suas barreiras físicas abrindo diversas possibilidades para organização de um mapa de maneira que o algoritmo de busca de menor caminho levará em consideração conexões a células que não são suas vizinhas fisicamente assim como suas diferentes heurísticas.
 
 \newpage
 
