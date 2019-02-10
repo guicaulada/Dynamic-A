@@ -149,10 +149,11 @@ function setEnd(graph, cell) {
  * Makes a cell wall
  * @param {Graph} graph The graph the cell is on
  * @param {Object} cell The cell that is being clicked
+ * @param {Boolean} wall If the cell is valid or invalid
  */
-function setWall(graph, cell) {
+function setWall(graph, cell, wall) {
     if (cell != graph.end && cell != graph.start) {
-        if (cell.weight) {
+        if (wall) {
             cell.p.attr({fill: 'grey'});
             cell.weight = 0;
         } else {
@@ -209,8 +210,10 @@ function cleanWalls() {
  * Clicks a cell to make wall, start or end
  * @param {Graph} graph The graph the cell is on
  * @param {Object} cell The cell that is being clicked
+ * @param {Object} event Information about pressed keys
+ * @param {Boolean} wall If the cell is valid or invalid
  */
-function clickGraphCell(graph, cell) {
+function clickGraphCell(graph, cell, event, wall) {
     let graphCell = graph.grid[cell.x][cell.y];
     let full = getFullCell(graph, graphCell);
     if (event.shiftKey && !event.altKey) {
@@ -228,12 +231,12 @@ function clickGraphCell(graph, cell) {
             setEnd(full.graph, full.cell);
         }
     } else {
-        setWall(graph, graphCell);
-        setWall(full.graph, full.cell);
-        if (full.cell.weight != graphCell.weight) {
-            setWall(graph, graphCell);
-            setWall(full.graph, full.cell);
-        }
+        if (wall == null) wall = graphCell.weight;
+        setWall(graph, graphCell, wall);
+        if (wall == null) wall = full.cell.weight;
+        setWall(full.graph, full.cell, wall);
         console.log('Clicked on Full[' + full.cell.x + ',' + full.cell.y + ']');
     }
+    repaintImportantCells(graph);
+    repaintImportantCells(full.graph);
 }

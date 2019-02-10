@@ -5,6 +5,9 @@ let tempCells = [];
 let desconnected = 1;
 let rectManhattan = 1;
 let hexManhattan = 0;
+let mouseDown = false;
+let mouseX = 0;
+let mouseY = 0;
 
 window.onload = () => {
     // Load rectangular grid for demo
@@ -18,9 +21,15 @@ window.onload = () => {
     });
     rectBoard.drawRectboard();
     rectBoard.addPaperToGraph(rectGraph);
-    rectBoard.setClickEvents((cell) => {
-        clickGraphCell(rectGraph, cell);
+    rectBoard.setClickEvents((cell, event) => {
+        clickGraphCell(rectGraph, cell, event);
         console.log('Clicked on Rect[' + cell.x + ',' + cell.y + ']');
+    });
+    rectBoard.setHoverEvents((cell, event) => {
+        if (event.buttons) {
+            clickGraphCell(rectGraph, cell, event, true);
+            console.log('Clicked on Rect[' + cell.x + ',' + cell.y + ']');
+        }
     });
 
     // Load hexagonal grid for demo
@@ -44,22 +53,43 @@ window.onload = () => {
     $('text').hide();
 };
 
-document.addEventListener('click', (event) => {
-    let closest = {
-        dm: 10000,
-    };
-    for (let i = 0; i < hexBoard.board.length; i++) {
-        let cell = hexBoard.board[i];
-        let dm = (Math.abs(event.clientX - cell.m[0])) + (Math.abs(event.clientY - cell.m[1]));
-        if (dm < 25 && dm < closest.dm) {
-            closest.dm = dm;
-            closest.cell = cell;
+document.addEventListener('mousemove', (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+});
+
+document.addEventListener('mousedown', (event) => {
+    let setWall = (wall) => {
+        let closest = {
+            dm: 10000,
+        };
+        for (let i = 0; i < hexBoard.board.length; i++) {
+            let cell = hexBoard.board[i];
+            let dm = (Math.abs(mouseX - cell.m[0])) + (Math.abs(mouseY - cell.m[1]));
+            if (dm < 25 && dm < closest.dm) {
+                closest.dm = dm;
+                closest.cell = cell;
+            }
         }
-    }
-    if (closest.cell) {
-        clickGraphCell(hexGraph, closest.cell);
-        console.log('Clicked on Hex[' + closest.cell.x + ',' + closest.cell.y + ']');
-    }
+        if (closest.cell) {
+            clickGraphCell(hexGraph, closest.cell, event, wall);
+            console.log('Clicked on Hex[' + closest.cell.x + ',' + closest.cell.y + ']');
+        }
+    };
+    setWall();
+    mouseDown = true;
+    setTimeout(() => {
+        if (mouseDown) {
+            mouseDown = setInterval(() => {
+                setWall(true);
+            }, 10);
+        }
+    }, 250);
+});
+
+document.addEventListener('mouseup', (event) => {
+    clearInterval(mouseDown);
+    mouseDown = false;
 });
 
 document.addEventListener('keydown', (event) => {

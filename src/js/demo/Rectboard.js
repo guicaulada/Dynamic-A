@@ -63,8 +63,21 @@ class Rectboard {
    */
   setClickEvents(callback) {
       for (let i = 0; i < this.board.length; i++) {
-          this.board[i].p.click(() => {
-            callback(this.board[i]);
+          this.board[i].p.click((event) => {
+            callback(this.board[i], event);
+          });
+      }
+  }
+
+  /**
+   * Set the same hover event for every node
+   * @param {*} callback
+   * @memberof Rectboard
+   */
+  setHoverEvents(callback) {
+      for (let i = 0; i < this.board.length; i++) {
+          this.board[i].p.hover((event) => {
+            callback(this.board[i], event);
           });
       }
   }
