@@ -25,19 +25,19 @@ let rectBoard;
 let fullGraph;
 
 const __Hexgrid__ = document.createElement('script');
-__Hexgrid__.src = 'js/demo/Hexgrid.js';
+__Hexgrid__.src = 'js/demo/classes/Hexgrid.js';
 document.head.appendChild(__Hexgrid__);
 
 const __Hexboard__ = document.createElement('script');
-__Hexboard__.src = 'js/demo/Hexboard.js';
+__Hexboard__.src = 'js/demo/classes/Hexboard.js';
 document.head.appendChild(__Hexboard__);
 
 const __Rectgrid__ = document.createElement('script');
-__Rectgrid__.src = 'js/demo/Rectgrid.js';
+__Rectgrid__.src = 'js/demo/classes/Rectgrid.js';
 document.head.appendChild(__Rectgrid__);
 
 const __Rectboard__ = document.createElement('script');
-__Rectboard__.src = 'js/demo/Rectboard.js';
+__Rectboard__.src = 'js/demo/classes/Rectboard.js';
 document.head.appendChild(__Rectboard__);
 
 const __functions__ = document.createElement('script');

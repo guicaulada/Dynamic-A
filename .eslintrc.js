@@ -12,6 +12,7 @@ module.exports = {
         ],
         "no-invalid-this": 0,
         "no-unused-vars": 0,
-        "new-cap": 0
+        "new-cap": 0,
+        "linebreak-style": 0
     }
 };
