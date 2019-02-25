@@ -44,7 +44,7 @@ function runDynamicA(graph) {
  * @param {Graph} graph The graph to clean
  */
 function cleanDynamicA(graph) {
-    graph.cleanDirty();
+    Astar.cleanDirty(graph);
     repaintImportantCells(graph);
     repaintImportantCells(fullGraph);
 }

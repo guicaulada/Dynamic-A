@@ -11,10 +11,11 @@ class Astar {
   * @return {Array} Lista de nodes que compoe o caminho
   */
   static search(graph, start, end) {
-    graph.cleanDirty();
+    Astar.init(graph);
+    Astar.cleanDirty(graph);
     let openHeap = Astar.getHeap();
     start.h = start.heuristic(start, end);
-    graph.markDirty(start);
+    Astar.markDirty(graph, start);
     openHeap.push(start);
     while (openHeap.size() > 0) {
       // Adquire o node de menor f para processar. Organizado pela heap
@@ -26,7 +27,7 @@ class Astar {
       // Caso o node atual seja diferente do final, marca node como visitado, processa cada vizinho
       currentNode.closed = true;
       // Encontra todos so vizinhos do node atual
-      let neighbors = graph.neighbors(currentNode);
+      let neighbors = currentNode.getNeighbors();
       for (let i = 0, il = neighbors.length; i < il; ++i) {
         let neighbor = neighbors[i];
         if (neighbor.closed || neighbor.isWall()) {
@@ -44,7 +45,7 @@ class Astar {
           neighbor.h = neighbor.h || neighbor.heuristic(neighbor, end);
           neighbor.g = gScore;
           neighbor.f = neighbor.g + neighbor.h;
-          graph.markDirty(neighbor);
+          Astar.markDirty(graph, neighbor);
           if (!beenVisited) {
             // Acrescenta a heap na sua posicao correta baseada em seu 'f'
             openHeap.push(neighbor);
@@ -57,6 +58,43 @@ class Astar {
     }
     // Nenhum caminho foi encontrado
     return [];
+  }
+
+  /**
+   * Marca todos os nodes como nao visitados
+   * @memberof Astar
+   * @param {Graph} graph
+   */
+  static init(graph) {
+    graph.dirtyNodes = [];
+    for (let i = 0; i < graph.nodes.length; i++) {
+      Astar.cleanNode(graph.nodes[i]);
+    }
+  }
+
+  /**
+   * Limpa todos os nodes visitados do grafo
+   * @memberof Astar
+   * @param {Graph} graph
+   */
+  static cleanDirty(graph) {
+    for (let i = 0; i < graph.dirtyNodes.length; i++) {
+      let node = graph.dirtyNodes[i];
+      Astar.cleanNode(node);
+      node.p.attr({fill: (node.weight === 0) ? 'grey' : 'white'}); // Pinta node na demo
+    }
+    graph.dirtyNodes = [];
+  }
+
+  /**
+   * Marca o Node como visitado
+   * @memberof Astar
+   * @param {Graph} graph
+   * @param {Node} node
+   */
+  static markDirty(graph, node) {
+    graph.dirtyNodes.push(node);
+    node.p.attr({fill: 'cyan'}); // Pinta node na demo
   }
 
   /**

@@ -22,8 +22,8 @@ class Hexgrid {
                         y: y,
                         weight: 1,
                         multiplier: 1.14,
-                        neighbors: [(graph, cell) => {
-                            let grid = graph.grid;
+                        neighbors: [(cell) => {
+                            let grid = cell.grid;
                             let ret = [];
                             // Northwest
                             if (grid[cell.x] && grid[cell.x][cell.y - 1]) {

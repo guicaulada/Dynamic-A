@@ -51,6 +51,11 @@ window.onload = () => {
 
     // Hide hexagonal grid help text
     $('text').hide();
+
+    // Initialize graphs for Astar
+    Astar.init(fullGraph);
+    Astar.init(hexGraph);
+    Astar.init(rectGraph);
 };
 
 document.addEventListener('mousemove', (event) => {
@@ -121,6 +126,7 @@ document.addEventListener('keydown', (event) => {
             $('#rectH').html('Rect Heuristic: Manhattan');
         }
     } else if (event.key == 'c') {
+        cleanWalls();
         cleanDynamicA(fullGraph);
         if (fullGraph.start) setStart(fullGraph, fullGraph.start);
         if (fullGraph.end) setEnd(fullGraph, fullGraph.end);
@@ -134,6 +140,9 @@ document.addEventListener('keydown', (event) => {
         hexBoard.addPaperToGraph(fullGraph);
         rectBoard.addPaperToGraph(fullGraph, fullGraph.offset);
     } else if (event.key == 'Enter') {
+        cleanDynamicA(fullGraph);
+        cleanDynamicA(hexGraph);
+        cleanDynamicA(rectGraph);
         console.log('Running Dynamic-A!');
 
         if (event.altKey) {
@@ -155,6 +164,9 @@ document.addEventListener('keydown', (event) => {
                 if (rectResult.cost) $('#rectP').html('Last Rect Path: ' + rectResult.cost);
             }
         }
+        repaintImportantCells(fullGraph);
+        repaintImportantCells(hexGraph);
+        repaintImportantCells(rectGraph);
     } else if (event.key == ' ') {
         cleanDynamicA(fullGraph);
         cleanDynamicA(hexGraph);
@@ -174,7 +186,7 @@ document.addEventListener('keyup', (event) => {
         for (let cell of connectedCells[color]) {
             if (cell.weight != 2) {
                 cell.weight = 2;
-                cell.neighbors.push((graph, cell) => {
+                cell.neighbors.push((cell) => {
                     return connectedCells[color].filter((node) => {
                         return !(node.x == cell.x && node.y == cell.y);
                     });

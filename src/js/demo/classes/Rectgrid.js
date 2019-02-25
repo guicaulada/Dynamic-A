@@ -20,8 +20,8 @@ class Rectgrid {
                     y: y,
                     weight: 1,
                     multiplier: 1.14,
-                    neighbors: [(graph, cell) => {
-                        let grid = graph.grid;
+                    neighbors: [(cell) => {
+                        let grid = cell.grid;
                         let ret = [];
                         // West
                         if (grid[cell.x - 1] && grid[cell.x - 1][cell.y]) {

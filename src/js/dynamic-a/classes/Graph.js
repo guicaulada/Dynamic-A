@@ -15,60 +15,11 @@ class Graph {
       let cell = cells[i];
       if (!this.grid[cell.x]) this.grid[cell.x] = [];
       let node = new Node(cell.x, cell.y, cell.weight, cell.multiplier, cell.neighbors, cell.heuristic);
+      node.graph = this;
+      node.grid = this.grid;
       this.grid[cell.x][cell.y] = node;
       this.nodes.push(node);
     }
-    this.init();
-  }
-
-  /**
-   * Marca todos os nodes como nao visitados
-   * @memberof Graph
-   */
-  init() {
-    this.dirtyNodes = [];
-    for (let i = 0; i < this.nodes.length; i++) {
-      Astar.cleanNode(this.nodes[i]);
-    }
-  }
-
-  /**
-   * Limpa todos os nodes visitados do grafo
-   * @memberof Graph
-   */
-  cleanDirty() {
-    for (let i = 0; i < this.dirtyNodes.length; i++) {
-      let node = this.dirtyNodes[i];
-      Astar.cleanNode(node);
-      node.p.attr({fill: (node.weight === 0) ? 'grey' : 'white'}); // Pinta node na demo
-    }
-    this.dirtyNodes = [];
-  }
-
-  /**
-   * Marca o Node como visitado
-   * @memberof Graph
-   * @param {Node} node
-   */
-  markDirty(node) {
-    this.dirtyNodes.push(node);
-    node.p.attr({fill: 'cyan'}); // Pinta node na demo
-  }
-
-  /**
-   * Retorna todos os vizinhos de um node
-   * @memberof Graph
-   * @param {Node} node Node para analisar
-   * @return {Array} Lista de vizinhos
-   */
-  neighbors(node) {
-    let neighbors = [];
-    for (let i = 0; i < node.neighbors.length; i++) {
-      neighbors = neighbors.concat(node.neighbors[i](this, node).filter((nbs) => {
-        return neighbors.indexOf(nbs) < 0;
-      }));
-    }
-    return neighbors;
   }
 
   /**
@@ -83,18 +34,21 @@ class Graph {
     for (let node of this.nodes) {
       let cell = new Node(node.x, node.y, node.weight, node.multiplier, node.neighbors, node.heuristic);
       if (!fullGraph.grid[cell.x]) fullGraph.grid[cell.x] = [];
+      cell.graph = fullGraph;
+      cell.grid = fullGraph.grid;
       fullGraph.grid[cell.x][cell.y] = cell;
       fullGraph.nodes.push(cell);
     }
     let offset = fullGraph.grid.length + extraOffset;
     for (let node of graph.nodes) {
       let cell = new Node(offset + node.x, node.y, node.weight, node.multiplier, node.neighbors, node.heuristic);
+      cell.graph = fullGraph;
+      cell.grid = fullGraph.grid;
       if (!fullGraph.grid[cell.x]) fullGraph.grid[cell.x] = [];
       fullGraph.grid[cell.x][cell.y] = cell;
       fullGraph.nodes.push(cell);
     }
     fullGraph.offset = offset;
-    fullGraph.init();
     return fullGraph;
   }
 

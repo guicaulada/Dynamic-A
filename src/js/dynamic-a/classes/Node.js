@@ -20,7 +20,21 @@ class Node {
     this.multiplier = multiplier;
     this.neighbors = neighbors;
     this.heuristic = heuristic;
-    this.neighbors.node = this;
+  }
+
+  /**
+   * Retorna todos os vizinhos de um node
+   * @memberof Node
+   * @return {Array} Lista de vizinhos
+   */
+  getNeighbors() {
+    let neighbors = [];
+    for (let i = 0; i < this.neighbors.length; i++) {
+      neighbors = neighbors.concat(this.neighbors[i](this).filter((nbs) => {
+        return neighbors.indexOf(nbs) < 0;
+      }));
+    }
+    return neighbors;
   }
 
   /**
@@ -30,7 +44,6 @@ class Node {
    * @return {Number} Custo para se mover
    */
   getCost(fromNeighbor) {
-    // Leva multiplier em consideracao.
     if (fromNeighbor && fromNeighbor.x != this.x && fromNeighbor.y != this.y) {
       return this.weight * this.multiplier;
     }
