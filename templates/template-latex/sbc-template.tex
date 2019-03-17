@@ -50,7 +50,7 @@
 		\label{fig:Astar101}
 	\end{figure}
 	
-	Como padrão quando nos referimos ao A* o valor g de uma posição representa o custo exato do inicio até si, o valor h representa a estimativa de custo ate a posição final e o valor de f é a soma desses dois valores. A Fig. \ref{fig:Astar101} apresenta o algoritmo passo-a-passo.
+	Como padrão quando nos referimos ao A* o valor g de uma posição representa o custo exato do inicio até si, o valor h representa a estimativa de custo ate a posição final e o valor de f é a soma desses dois valores. A Fig.\ref{fig:Astar101} apresenta o algoritmo passo-a-passo.
 	
 	O A* possui diversas propriedades que foram provadas por Hart, Nilsson e Raphael em 1968. \nocite{synthesis} A primeira propriedade é que o algoritmo A* garantidamente trás um caminho entre a posição final e inicial caso ele exista. A segunda, a qualidade do caminho resultante depende em grande parte da heurística escolhida. Para que essa heurística seja admissível ela deve sempre estimar um valor menor ou igual ao menor custo da posição que esta sendo analisada a final. E a terceira propriedade do A* é que ele faz um uso eficiente da função heurística escolhida para ser o método de busca que examina a menor quantidade de posições para encontrar o melhor resultado. Nenhum outro método utiliza uma função heurística para atingir o mesmo objetivo.
 	
@@ -62,13 +62,13 @@
 		\label{fig:astar}
 	\end{figure}
 	
-	Apesar do A* ser a escolha mais popular para a busca de menor caminho em jogos de computador, como aplicar esse algoritmo em um jogo depende da sua natureza e representação do mundo virtual. Por exemplo em um jogo que possui uma grade retangular com 1000 posições verticais e 1000 horizontais, com um total de 1 milhão de posições possíveis, sera mais trabalhoso calcular um caminho, reduzindo o espaço de busca pode acelerar significantemente o algoritmo A* \cite{modern}. A Fig. \ref{fig:astar} demonstra um exemplo do A* sendo executado em uma grade quadriculada. 
+	Apesar do A* ser a escolha mais popular para a busca de menor caminho em jogos de computador, como aplicar esse algoritmo em um jogo depende da sua natureza e representação do mundo virtual. Por exemplo em um jogo que possui uma grade retangular com 1000 posições verticais e 1000 horizontais, com um total de 1 milhão de posições possíveis, sera mais trabalhoso calcular um caminho, reduzindo o espaço de busca pode acelerar significantemente o algoritmo A* \cite{modern}. A Fig.\ref{fig:astar} demonstra um exemplo do A* sendo executado em uma grade quadriculada. 
 	
 \section{Otimizações}
 	As sessões a seguir apresentam otimizações possíveis para o algoritmo A* que foram aplicadas em conjunto com a otimização sugerida neste artigo.
 	
 \subsection{Espaço de Busca}
-	Em qualquer mapa virtual, os elementos presentes nele devem utilizar uma estrutura de dados para representar esse ambiente de forma que sejam capazes de calcular o caminho para uma posição destino. Encontrar a melhor estrutura de dados para representar este ambiente é de grande importância para atingir uma performance aceitável para a busca de menor caminho. Como citado no exemplo anterior, um espaço de busca mais simples permite que o algoritmo execute mais rapidamente. A Fig. \ref{fig:five-ways} apresenta exemplos de representações possíveis para um mesmo mapa virtual.
+	Em qualquer mapa virtual, os elementos presentes nele devem utilizar uma estrutura de dados para representar esse ambiente de forma que sejam capazes de calcular o caminho para uma posição destino. Encontrar a melhor estrutura de dados para representar este ambiente é de grande importância para atingir uma performance aceitável para a busca de menor caminho. Como citado no exemplo anterior, um espaço de busca mais simples permite que o algoritmo execute mais rapidamente. A Fig.\ref{fig:five-ways} apresenta exemplos de representações possíveis para um mesmo mapa virtual.
 	
 	\begin{figure}[ht]
 		\centering
@@ -78,7 +78,7 @@
 	\end{figure}
 
 \subsection{Função Heurística}
-	O segredo para o sucesso do A* é que ele estende o algoritmo de Dijkstra introduzindo o uso da função heurística. O algoritmo de Dijkstra garantidamente encontra o menor caminho em um grafo conexo com elementos de diferentes pesos contanto que nenhum de seus pesos possua um valor negativo, entretanto ele não é eficiente pois todos os elementos do grafo devem ser analisados. O algoritmo A* melhora a eficiência computacional significantemente introduzindo o uso de heurística na tomada de decisões. Através da heurística invés de realizar uma busca extensiva em todos os elementos, apenas as posições que aparentam ser boas opções são analisadas. A função heurística utilizada no algoritmo A* estima o custo de uma posição qualquer até a posição destino. Caso o custo estimado seja exatamente igual ao custo real, então apenas as melhores posições são escolhidas e nada mais é analisado. Portanto, uma função heurística que estima o custo com precisão pode tornar o algoritmo muito mais rápido. Por outro lado, utilizar uma heurística que estima um custo um pouco acima do real normalmente resulta em uma busca mais rápida com um caminho aceitável \cite{steve}. A Fig. \ref{fig:heuristics} apresenta o resultado do algoritmo de busca utilizando diferentes heurísticas para ultrapassar um obstaculo. 
+	O segredo para o sucesso do A* é que ele estende o algoritmo de Dijkstra introduzindo o uso da função heurística. O algoritmo de Dijkstra garantidamente encontra o menor caminho em um grafo conexo com elementos de diferentes pesos contanto que nenhum de seus pesos possua um valor negativo, entretanto ele não é eficiente pois todos os elementos do grafo devem ser analisados. O algoritmo A* melhora a eficiência computacional significantemente introduzindo o uso de heurística na tomada de decisões. Através da heurística invés de realizar uma busca extensiva em todos os elementos, apenas as posições que aparentam ser boas opções são analisadas. A função heurística utilizada no algoritmo A* estima o custo de uma posição qualquer até a posição destino. Caso o custo estimado seja exatamente igual ao custo real, então apenas as melhores posições são escolhidas e nada mais é analisado. Portanto, uma função heurística que estima o custo com precisão pode tornar o algoritmo muito mais rápido. Por outro lado, utilizar uma heurística que estima um custo um pouco acima do real normalmente resulta em uma busca mais rápida com um caminho aceitável \cite{steve}. A Fig.\ref{fig:heuristics} apresenta o resultado do algoritmo de busca utilizando diferentes heurísticas para ultrapassar um obstaculo. 
 	
 	\newpage
 	
@@ -89,22 +89,93 @@
 		\label{fig:heuristics}
 	\end{figure}
 
-	Quando a heurística estima um valor zero (como mostrado na Fig. \ref{fig:heuristics}a), o algoritmo A* se torna semelhante ao algoritmo de Dijkstra. Quando a heurística utiliza a distancia euclideana ate o destino (mostrado na Fig. \ref{fig:heuristics}b), apenas as posições que aparentam ser melhores opções são examinadas. Quando a heurística estima valores um pouco acima do valor real (como na Fig. \ref{fig:heuristics}c), a busca foca nas posições mais próximas do destino final. Apesar de conseguirmos uma execução mais rápida estimando custos acima dos valores reais, quanto acima dos valores reais devem ser estas estimativas é um problema difícil, sem solução ate o momento.
+	Quando a heurística estima um valor zero (como mostrado na Fig.\ref{fig:heuristics}a), o algoritmo A* se torna semelhante ao algoritmo de Dijkstra. Quando a heurística utiliza a distancia euclideana ate o destino (mostrado na Fig.\ref{fig:heuristics}b), apenas as posições que aparentam ser melhores opções são examinadas. Quando a heurística estima valores um pouco acima do valor real (como na Fig.\ref{fig:heuristics}c), a busca foca nas posições mais próximas do destino final. Apesar de conseguirmos uma execução mais rápida estimando custos acima dos valores reais, quanto acima dos valores reais devem ser estas estimativas é um problema difícil, sem solução ate o momento.
 	
 \subsection{Estrutura de Dados}
 	Ao ser inicializada uma posição deve ser guardada em algum lugar para rápido acesso. Uma tabela de \textit{hashes} pode ser considerada uma das melhores escolhas pois permite constante acesso aos dados e torna possível descobrir se uma certa posição esta na lista de posições abertas ou fechadas instantaneamente. 
 	
 	Uma fila com prioridades é a melhor maneira para implementarmos e manter as listas de posições, neste caso implementamos uma arvore \textit{heap} binaria. Existem poucos trabalhos introduzindo novas formas de estruturar e manter as listas de posições abertas e fechadas, provavelmente introduzindo uma nova estrutura de dados para o A* pode ajudar a melhorar sua performance significativamente \cite{modern}.
-	
-\iffalse
-CONTINUE FROM HERE
-\fi
 
 \section{Dynamic-A}
-Adicionando a cada célula do algoritmo um tipo que informa ao algoritmo como interpretar os vizinhos desta célula especifica.
-Podemos criar células de tipo hexagonais, ou quadradas, ou de qualquer tipo, afinal estas grades de células hexagonais e quadradas com as quais estamos acostumados são
-apenas representações dos vizinhos de cada célula através de barreiras físicas, nada impede a criação de um tipo de célula que possua uma especie de túnel que a conecte com uma outra célula que não esta conectada fisicamente a ela. Utilizando esta técnica, é possível a criação de um algoritmo A* que se adapte a qualquer tipo de célula que esta sendo analisada pelo algoritmo.
+	Dynamic-A é uma modificação do algoritmo A* que torna sua execução mais flexível tornando possível a detecção de objetos dinâmicos durante o processamento do menor caminho, adaptando sua analise de acordo com as propriedades das posições que estão sendo analisadas. As sessões a seguir descrevem o algoritmo Dynamic-A, como seu funcionamento difere do A* original e por que esse algoritmo pode ser considerado uma otimização. Dynamic-A não depende de uma linguagem especifica e pode ser adaptado para qualquer linguagem de programação orientada a objetos.
+	
+\subsection{Classes}
+	\subsubsection{Node}
+		A classe Node representa cada célula do mapa. Cada posição possível no espaço virtual deve ser atribuída a um Node, esse deve conter as informações das coordenadas individuais daquela posição, o peso, suas funções de vizinhos e heurísticas. Dessa forma quando o A* for analisar esta célula seus vizinhos poderão ser calculados dinamicamente com funções que acessam variáveis externas, seus vizinhos e heurística poderão ser atualizadas a qualquer momento, sendo consideradas apenas quando o algoritmo esta realizando a analise daquela célula.
+	\subsubsection{Graph}
+		Essa classe representa o mapa e as posições de todas as células e suas conexões. Cada grafo possui uma lista de nodes e uma tabela de quantas dimensões forem necessárias para mapear as posições das células do mapa utilizado. Essa classe garante acesso rápido e continuo as células que serão analisadas pelo algoritmo durante o calculo do menor caminho.
+		
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=.7\textwidth]{comparacao.png}
+			\caption{Uma grade hexagonal (a esquerda) e retangular (a direita)
+				representadas no formato de um grafo.}
+			\label{fig:comparacao}
+		\end{figure}
+	
+	\subsubsection{BinaryHeap}
+		A classe BinaryHeap implementa uma arvore binaria \textit{heap}, ou de forma mais abstrata uma fila de prioridades. Essa fila guarda um certo grupo de objetos de acordo com sua chave (a prioridade), e possui um numero de operações para inserir um objeto novo, encontrar o elemento de menor prioridade e para deletar esse elemento \cite{brass}. É possível substituir o foco no objeto de menor prioridade pelo de maior, e também criar uma \textit{heap} que realiza a busca por ambos. Na Fig.\ref{fig:heap} podemos visualizar essa estrutura em formato de arvore com seus índices de lista indicados entre colchetes.
+		
+		\begin{figure}[ht]
+			\centering
+			\includegraphics[width=1\textwidth]{heap.png}
+			\caption{Representação de uma heap baseada em lista com seus elementos
+				ordenados por prioridade \cite{brass}.}.
+			\label{fig:heap}
+		\end{figure}
+		
+		Nesse projeto criamos uma \textit{heap} para servir como a lista de posições em aberto, essa lista sera organizada pelo valor de f de cada posição. Ao ser adicionado na lista um elemento sera reposicionado de acordo com o seu valor de f. Ao removermos um elemento da lista, seja ele o primeiro da lista, ou em qualquer outra posição, a lista sera reorganizada de acordo com os valores de f de cada Node utilizando funções para mover seus elementos dentro de sua estrutura.
+	\subsubsection{Astar}
+		Essa classe agrega as funções necessárias para a busca de menor caminho e tratamento de grafos, funções para limpar células, retornar o caminho do node atual ao inicial, marcar nodes como abertos ou fechados e inicializar grafos, definindo como zero os valores de f, g e h de todas as células de um grafo. A função de busca sera implementada de acordo com a definição da Fig.\ref{fig:Astar101}, entretanto os vizinhos de cada célula e a heurística a ser utilizada sera definido dentro do node a ser analisado pelo algoritmo.
 
+\subsection{Implementação e Testes}
+	Para implementar esse algoritmo a linguagem escolhida foi JavaScript, devido a sua flexibilidade e facilidade na criação e manipulação de novas estruturas e objetos. Para visualização do algoritmo utilizamos uma combinação de HTML, JavaScript e CSS para construir uma aplicação web capaz de executar diferentes testes no algoritmo.
+	A linguagem HTML não é suficiente para a construção de aplicações web mais sofisticadas. Por isso HTML incorpora JavaScript para facilitar a criação de aplicações mais complexas. Basicamente JavaScript é uma linguagem suportada na maioria dos navegadores e na muitas vezes é utilizado para estabelecer interações através de interfaces visuais. Apesar de ser uma linguagem poderosa e com capacidade de orientação a objetos, ela é fácil de se aprender e entender, é uma linguagem recomendada para novos desenvolvedores por sua facilidade e simplicidade \cite{ahmed}. As próximas sessões descrevem os testes realizados a a partir dessa implementação.
+	
+	\subsubsection{Interface de Testes}
+	Na interface de testes uma grade hexagonal e uma grade quadriculada representam nodes de diferentes propriedades, através de comandos é possível operar a interface para alterar a heurística e as funções de vizinhos de certas células, permitindo executar o algoritmo em diferentes condições para realizar uma analise de seus resultados. 
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=1\textwidth]{interface.png}
+		\caption{Interface de testes.}.
+		\label{fig:interface}
+	\end{figure}
+
+	Na Fig.\ref{fig:interface} pode-se visualizar a interface utilizada. Em sua parte inferior existem opções para executar o algoritmo, remover a ultima execução, limpar células invalidas e modificar a heurística em cada grade. Clicando sobre as células é possível alterna-las entre validas e invalidas, uma célula invalida sera considerada como um obstaculo pelo algoritmo. Através de cliques também é possível definir o inicio e final da busca e conectar células, efetivamente modificando suas funções de vizinhos. No mesmo painel aonde são exibidos os controles também encontra-se estatísticas sobre a ultima execução.
+	
+	\subsubsection{Diferentes Propriedades}
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=1\textwidth]{propriedades.png}
+		\caption{Demonstração do resultado gerado por diferentes propriedades.}.
+		\label{fig:propriedades}
+	\end{figure}
+	
+	\subsubsection{Diferentes Heurísticas}
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=0.5\textwidth]{heuristiccomp.png}
+		\caption{Comparação entre as heurísticas Manhattan (a), Diagonal (b) e sem heurística (c).}.
+		\label{fig:heuristiccomp}
+	\end{figure}
+	
+	\subsubsection{Adaptação}
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=1\textwidth]{adaptacao.png}
+		\caption{Demonstração do algoritmo se adaptando a diferentes propriedades.}.
+		\label{fig:adaptacao}
+	\end{figure}
+
+\section{Aplicações}
+
+\section{Conclusões}
+		
+\iffalse
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=.7\textwidth]{optimizacao.png}
@@ -120,14 +191,6 @@ Ao comparar o algoritmo optimizado com o padrão notamos que a diferença no uso d
 \subsection{Implementação}
 As grades retangulares, hexagonais, octogonais, de diferentes formatos, são apenas representações de grafos de uma maneira visual, cada uma de suas células podem ser representadas como pontos em um grafo, de maneira que suas conexões representam suas células vizinhas, estas conexões podem ser modificadas de acordo com o tipo da célula.
 
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=.7\textwidth]{comparacao.png}
-	\caption{Esta figura representa as grades hexagonais e retangulares
-		no formato de um grafo.}
-	\label{fig:comparacao}
-\end{figure}
-
 {\setlength{\parindent}{0cm}
 Para implementar a optimização sugerida, utilizamos uma linguagem orientada a objetos e criamos uma classe grafo, que possui elementos da classe célula, cada célula possui funções que dizem sua posição no grafo, seu custo, se é valida ou não, assim como o seu tipo, que define como o grafo calculara os vizinhos da quela célula de acordo com sua posição.
 }
@@ -138,6 +201,7 @@ que mudam os dados de suas células dinamicamente. Na área de jogos um mapa dinâm
 
 \section{Conclusão}
 Utilizando está técnica de optimização podemos definir vários tipos diferentes de células, não necessariamente formando grades, seus vizinhos podem ser definidos fora do escopo de suas barreiras físicas abrindo diversas possibilidades para organização de um mapa de maneira que o algoritmo de busca de menor caminho levará em consideração conexões a células que não são suas vizinhas fisicamente assim como suas diferentes heurísticas.
+\fi
 
 \section{Agradecimentos}
 Agradeço ao professor Pedro Cacique assim como a todos os outros professores da FCI por seus ensinamentos.

@@ -1,5 +1,11 @@
 \begin{thebibliography}{}
 
+\bibitem[Brass 2008]{brass}
+Brass, P. (2008).
+\newblock Heaps.
+\newblock In {\em Advanced Data Structures}, pages 209--271. Cambridge
+  University Press.
+
 \bibitem[Cui 2011]{modern}
 Cui, Xiao;~Shi, H. (2011).
 \newblock A*-based pathfinding in modern computer games.
@@ -32,5 +38,11 @@ Stout, B. (2000).
 \newblock The basics of a* for path planning.
 \newblock In DeLoura, M., editor, {\em Game Programming Gems}, pages 254--263.
   Charles River Media.
+
+\bibitem[Zeeshan 2014]{ahmed}
+Zeeshan, A. (2014).
+\newblock Which one is better - javascript or jquery.
+\newblock {\em International Journal of Computer Science and Mobile Computing},
+  3(6):193--207.
 
 \end{thebibliography}
