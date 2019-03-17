@@ -130,14 +130,15 @@
 
 \subsection{Implementação e Testes}
 	Para implementar esse algoritmo a linguagem escolhida foi JavaScript, devido a sua flexibilidade e facilidade na criação e manipulação de novas estruturas e objetos. Para visualização do algoritmo utilizamos uma combinação de HTML, JavaScript e CSS para construir uma aplicação web capaz de executar diferentes testes no algoritmo.
-	A linguagem HTML não é suficiente para a construção de aplicações web mais sofisticadas. Por isso HTML incorpora JavaScript para facilitar a criação de aplicações mais complexas. Basicamente JavaScript é uma linguagem suportada na maioria dos navegadores e na muitas vezes é utilizado para estabelecer interações através de interfaces visuais. Apesar de ser uma linguagem poderosa e com capacidade de orientação a objetos, ela é fácil de se aprender e entender, é uma linguagem recomendada para novos desenvolvedores por sua facilidade e simplicidade \cite{ahmed}. As próximas sessões descrevem os testes realizados a a partir dessa implementação.
+	
+	A linguagem HTML não é suficiente para a construção de aplicações web mais sofisticadas. Por isso HTML incorpora JavaScript para facilitar a criação de aplicações mais complexas. Basicamente JavaScript é uma linguagem suportada na maioria dos navegadores e muitas vezes utilizado para estabelecer interações através de interfaces visuais. Apesar de ser uma linguagem poderosa e com capacidade de orientação a objetos, ela é fácil de se aprender e entender, é uma linguagem recomendada para novos desenvolvedores por sua facilidade e simplicidade \cite{ahmed}. As próximas sessões descrevem os testes realizados a a partir dessa implementação.
 	
 	\subsubsection{Interface de Testes}
 	Na interface de testes uma grade hexagonal e uma grade quadriculada representam nodes de diferentes propriedades, através de comandos é possível operar a interface para alterar a heurística e as funções de vizinhos de certas células, permitindo executar o algoritmo em diferentes condições para realizar uma analise de seus resultados. 
 	
 	\begin{figure}[ht]
 		\centering
-		\includegraphics[width=1\textwidth]{interface.png}
+		\includegraphics[width=.8\textwidth]{interface.png}
 		\caption{Interface de testes.}.
 		\label{fig:interface}
 	\end{figure}
@@ -145,28 +146,38 @@
 	Na Fig.\ref{fig:interface} pode-se visualizar a interface utilizada. Em sua parte inferior existem opções para executar o algoritmo, remover a ultima execução, limpar células invalidas e modificar a heurística em cada grade. Clicando sobre as células é possível alterna-las entre validas e invalidas, uma célula invalida sera considerada como um obstaculo pelo algoritmo. Através de cliques também é possível definir o inicio e final da busca e conectar células, efetivamente modificando suas funções de vizinhos. No mesmo painel aonde são exibidos os controles também encontra-se estatísticas sobre a ultima execução.
 	
 	\subsubsection{Diferentes Propriedades}
+	Células de diferentes propriedades possibilitam a visualização do impacto que a mudança nas funções de vizinhos e heurística causam no resultado do A*. Na Fig.\ref{fig:propriedades} podemos visualizar o caminho calculado pela execução individual do algoritmo em células com vizinhos definidos em formato hexagonal e quadricular. Pode-se ver claramente o impacto que a mudança em suas funções de vizinhos causou na escolha do menor caminho para um obstaculo do mesmo tamanho. A imagem representa em azul claro os elementos analisados, em azul escuro os que fazem parte do menor caminho, em branco células ignoradas e em cinza obstáculos.
+	
+	\newpage
 	
 	\begin{figure}[ht]
 		\centering
-		\includegraphics[width=1\textwidth]{propriedades.png}
+		\includegraphics[width=.8\textwidth]{propriedades.png}
 		\caption{Demonstração do resultado gerado por diferentes propriedades.}.
 		\label{fig:propriedades}
 	\end{figure}
+
+	Apesar de representados em formatos de grade, os grafos que representam cada uma das células que estão sendo analisadas se assemelham mais com os presentes na Fig.\ref{fig:comparacao}. As células não estão restritas a vizinhos definidos apenas por barreiras físicas, as funções podem ser definidas de qualquer maneira necessária levando em consideração qual quer tipo de variável interna ou externa a grade. Dessa maneira posições que não são vizinhas físicas podem estar conectadas de alguma outra maneira através de uma função que descreva essa relação.
 	
 	\subsubsection{Diferentes Heurísticas}
+	A mudança de heurística apresenta grande impacto na performance do algoritmo. Uma estimativa de custo acima do real pode resultar em menos posições para serem analisadas, assim melhorando a performance do algoritmo que é executado mais rapidamente. Por outro lado uma heurística que retorna valores muito abaixo dos custos reais resultaria em analises desnecessárias aumentando o tempo de execução do algoritmo, portanto reduzindo sua performance. Apesar de se conseguir melhores resultados com uma heurística que retorne valores acima dos reais não se sabe ate que ponto estes valores devem se distanciar do custo real.
+	
+	\newpage
 	
 	\begin{figure}[ht]
 		\centering
-		\includegraphics[width=0.5\textwidth]{heuristiccomp.png}
-		\caption{Comparação entre as heurísticas Manhattan (a), Diagonal (b) e sem heurística (c).}.
+		\includegraphics[width=1\textwidth]{heuristiccomp.png}
+		\caption{Comparação entre as heurísticas Manhattan (a, b), Diagonal (c, d), com Manhattan x10 (e, f) e sem heurística (g, h).}.
 		\label{fig:heuristiccomp}
 	\end{figure}
+	
+	A Fig.\ref{fig:heuristiccomp} apresenta uma comparação de diferentes funções heurísticas sendo executadas na interface de testes. É possível visualizar o impacto que diferentes heurísticas tiveram no resultado do algoritmo. Funções que estimam valores acima do real tiveram melhores resultados, variados de acordo com suas implementações. Quanto menor o valor retornado pela heurística for em comparação com seu valor real, pior sera o a performance do algoritmo. Apesar de todos encontrarem caminhos aceitáveis semelhantes, quanto mais células estiverem sendo analisadas mais tempo levara para o algoritmo retornar o resultado final.
 	
 	\subsubsection{Adaptação}
 	
 	\begin{figure}[ht]
 		\centering
-		\includegraphics[width=1\textwidth]{adaptacao.png}
+		\includegraphics[width=.8\textwidth]{adaptacao.png}
 		\caption{Demonstração do algoritmo se adaptando a diferentes propriedades.}.
 		\label{fig:adaptacao}
 	\end{figure}
