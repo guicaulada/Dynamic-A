@@ -1,0 +1,28 @@
+
+ 1. Adicione a posição inicial a lista de posições em aberto.
+ 2. Repita os seguintes passos:
+    a. Procure pela posição que possui o menor f na lista
+       de posições em aberto. Defina essa posição como 
+       a posição atual.
+    b. Mova essa posição para lista de posições fechadas.
+    c. Para cada posição vizinha a posição atual.
+       i. Se estiver na lista de posições fechadas, ignore.
+      ii. Se não estiver na lista de posições em aberto
+          adicione-a a lista. Defina a posição atual como
+          parente dessa posição. Grave o valor de f, g e h
+          dessa posição.
+     iii. Se ja estiver na lista de posições em aberto,
+          cheque se este não é um melhor caminho. Caso seja,
+          mude sua posição parente para a posição atual e
+          recalcule os valores de f e g.
+    d. Pare quando
+       i. Adicionar a posição final a lista de posições fechadas.
+      ii. Falhar ao buscar a posição final e a lista de posições 
+          em aberto estiver vazia.
+ 3. A lista de posições utilizadas para se mover da posição
+    inicial a posição final é o menor caminho encontrado.
+
+
+
+
+

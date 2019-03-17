@@ -6,19 +6,31 @@ Cui, Xiao;~Shi, H. (2011).
 \newblock {\em International Journal of Computer Science and Network Security},
   11(1):125--130.
 
-\bibitem[Graham 2003]{computer}
-Graham, Ross;~Sheridan, S. (2003).
-\newblock Pathfinding in computer games.
-\newblock {\em The ITB Journal}, 4(2):57--81.
-
 \bibitem[Lester 2005]{begginers}
 Lester, P. (2005).
 \newblock A* pathfinding for beginners.
 \newblock pages 1--11.
 
+\bibitem[Peter 1968]{synthesis}
+Peter, Hart;~Betram, R. (1968).
+\newblock A formal basis for the heuristic determination of minimum cost paths.
+\newblock {\em IEEE Trans.Syst.Sci.Cybernet}, 4(2):100--107.
+
+\bibitem[Steve 2000]{steve}
+Steve, R. (2000).
+\newblock A* speed optimizations.
+\newblock In DeLoura, M., editor, {\em Game Programming Gems}, pages 264--271.
+  Charles River Media.
+
 \bibitem[Stout 1997]{smart}
 Stout, B. (1997).
 \newblock Smart moves: Intelligent pathfinding.
 \newblock {\em Game Developer Magazine}, pages 1--10.
+
+\bibitem[Stout 2000]{basics}
+Stout, B. (2000).
+\newblock The basics of a* for path planning.
+\newblock In DeLoura, M., editor, {\em Game Programming Gems}, pages 254--263.
+  Charles River Media.
 
 \end{thebibliography}
