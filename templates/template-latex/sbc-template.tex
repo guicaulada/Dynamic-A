@@ -205,35 +205,10 @@
 
 	Outras aplicações envolvem o uso em aplicativos de GPS para lidar com o mundo real, o mundo em que vivemos muda o tempo todo e os aplicativos de hoje em dia devem ser capazes de adaptar o caminho calculado de acordo com as novas situações que lhe são apresentadas. Utilizando outras técnicas de otimização em combinação com o método sugerido aplicativos poderiam manter em cada cruzamento dados sobre o transito a frente, assim podendo adaptar o caminho conforme for necessário.
 	
-\section{Conclusões}
-		
-\iffalse
-\begin{figure}[ht]
-	\centering
-	\includegraphics[width=.7\textwidth]{optimizacao.png}
-	\caption{Esta figura demonstra o algoritmo optimizado em execução
-		para grades de células com tipos diferentes.}
-	\label{fig:optimizacao}
-\end{figure}
-
-{\setlength{\parindent}{0cm}
-Ao comparar o algoritmo optimizado com o padrão notamos que a diferença no uso de memoria era minima e so causaria impacto se o numero de células fosse muito alto, devido a possibilidade de células com funções heurísticas diferentes a qualidade destas funções definirão a precisão do resultado final.
-}
-
-\subsection{Implementação}
-As grades retangulares, hexagonais, octogonais, de diferentes formatos, são apenas representações de grafos de uma maneira visual, cada uma de suas células podem ser representadas como pontos em um grafo, de maneira que suas conexões representam suas células vizinhas, estas conexões podem ser modificadas de acordo com o tipo da célula.
-
-{\setlength{\parindent}{0cm}
-Para implementar a optimização sugerida, utilizamos uma linguagem orientada a objetos e criamos uma classe grafo, que possui elementos da classe célula, cada célula possui funções que dizem sua posição no grafo, seu custo, se é valida ou não, assim como o seu tipo, que define como o grafo calculara os vizinhos da quela célula de acordo com sua posição.
-}
-
-\section{Aplicações}
-Este algoritmo poderia ser utilizado em diferentes áreas para a criação de mapas
-que mudam os dados de suas células dinamicamente. Na área de jogos um mapa dinâmico abre um leque de possibilidades podendo mudar o comportamento da busca de menor caminho dos personagens presentes no jogo. Existem também aplicações no mundo real, no GPS o algoritmo poderia conectar estações de ônibus e oferecer o menor caminho por transporte publico, ou poderia mudar as funções heurísticas do mapa de acordo com o tipo de viagem selecionada mais rápida ou com menos consumo de gasolina. 
-
 \section{Conclusão}
-Utilizando está técnica de optimização podemos definir vários tipos diferentes de células, não necessariamente formando grades, seus vizinhos podem ser definidos fora do escopo de suas barreiras físicas abrindo diversas possibilidades para organização de um mapa de maneira que o algoritmo de busca de menor caminho levará em consideração conexões a células que não são suas vizinhas fisicamente assim como suas diferentes heurísticas.
-\fi
+	Esse artigo apresenta entre as diferentes otimizações para o A* uma nova opção para tornar o algoritmo mais flexível, possibilitando o tratamento de objetos dinâmicos. Mostrando de forma clara como a nova versão do algoritmo difere de sua versão original. Seria difícil encontrar um algoritmo melhor que o A* e ele tem se tornado cada vez mais popular. Muitos desenvolvedores focam seus esforços em aumentar sua performance e diminuir o uso de recursos otimizando diferentes aspectos do algoritmo. Entretanto nesse artigo sugerimos uma otimização que busca contribuir de outra maneira para a industria de jogos, tornando mais fácil tratar diferentes terrenos através de um algoritmo que suporta qualquer configuração de vizinhos.
+	
+	Uma pesquisa potencial seria continuar esse ramo de otimização para tornar o algoritmo A* ainda mais flexível, combinando diferentes técnicas de otimização para produzir um algoritmo que seja capaz de se adaptar a qualquer situação com maior facilidade. Outra maneira seria aplicar as técnicas aqui sugeridas em um software real, muitas técnicas de otimização do A* não estão sendo utilizadas pela industria de jogos. A busca de menor caminho é um dos tópicos mais comentados da industria e muitos desenvolvedores encontram dificuldade em aplicar esse algoritmos em seus projetos. Espera-se que essa pesquisa inspire novos desenvolvedores a explorarem o potencial do A* para produzir algoritmos capazes de lidar com ambientes dinâmicos mais facilmente utilizando as técnicas aqui descritas.
 
 \section{Agradecimentos}
 Agradeço ao professor Pedro Cacique assim como a todos os outros professores da FCI por seus ensinamentos.
