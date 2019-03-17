@@ -184,8 +184,8 @@ document.addEventListener('keyup', (event) => {
     connectedCells[color] = ret;
     if (event.key == 'Alt') {
         for (let cell of connectedCells[color]) {
-            if (cell.weight != 2) {
-                cell.weight = 2;
+            if (!cell.modded) {
+                cell.modded = true;
                 cell.neighbors.push((cell) => {
                     return connectedCells[color].filter((node) => {
                         return !(node.x == cell.x && node.y == cell.y);
@@ -194,6 +194,7 @@ document.addEventListener('keyup', (event) => {
                 cell.color = color;
                 cell.p.attr({fill: color});
             } else {
+                cell.modded = false;
                 cell.neighbors.pop();
                 connectedCells[cell.color] = connectedCells[cell.color].filter((node) => {
                     return !(node.x == cell.x && node.y == cell.y);

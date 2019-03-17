@@ -8,7 +8,7 @@ function repaintImportantCells(graph) {
     if (graph.end) graph.end.p.attr({fill: 'red'});
 
     for (let node of graph.nodes) {
-        if (node.weight == 2) {
+        if (node.modded) {
             node.p.attr({fill: node.color});
         }
     }

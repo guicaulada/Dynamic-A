@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.8.8)  17 MAR 2019 17:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.8.8)  17 MAR 2019 18:57
 entering extended mode
 **./sbc-template.tex
 (sbc-template.tex
@@ -308,31 +308,38 @@ File: heuristiccomp.png Graphic file (type png)
 <use heuristiccomp.png>
 Package pdftex.def Info: heuristiccomp.png  used on input line 169.
 (pdftex.def)             Requested size: 426.79135pt x 219.24153pt.
-<adaptacao.png, id=53, 1306.12968pt x 604.50844pt>
+ [10 <./heuristiccomp.png>]
+<adaptacao.png, id=57, 1304.62407pt x 603.0028pt>
 File: adaptacao.png Graphic file (type png)
 <use adaptacao.png>
-Package pdftex.def Info: adaptacao.png  used on input line 180.
-(pdftex.def)             Requested size: 341.43437pt x 158.01709pt.
- (sbc-template.bbl [10 <./heuristiccomp.png> <./adaptacao.png>]) [11]
-(sbc-template.aux) ) 
+Package pdftex.def Info: adaptacao.png  used on input line 183.
+(pdftex.def)             Requested size: 341.43437pt x 157.80754pt.
+ [11 <./adaptacao.png>]
+<civ5.png, id=62, 666.99188pt x 286.06876pt>
+File: civ5.png Graphic file (type png)
+<use civ5.png>
+Package pdftex.def Info: civ5.png  used on input line 201.
+(pdftex.def)             Requested size: 341.43437pt x 146.44313pt.
+ (sbc-template.bbl)
+[12 <./civ5.png>] (sbc-template.aux) ) 
 Here is how much of TeX's memory you used:
- 2704 strings out of 492973
- 38601 string characters out of 3135933
- 111242 words of memory out of 3000000
- 6517 multiletter control sequences out of 15000+200000
+ 2710 strings out of 492973
+ 38670 string characters out of 3135933
+ 111252 words of memory out of 3000000
+ 6522 multiletter control sequences out of 15000+200000
  21033 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,10n,28p,1338b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on sbc-template.pdf (11 pages, 1341994 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dv
+ips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
+8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
+/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8
+a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on sbc-template.pdf (12 pages, 2226296 bytes).
 PDF statistics:
- 86 PDF objects out of 1000 (max. 8388607)
+ 91 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

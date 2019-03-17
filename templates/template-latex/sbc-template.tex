@@ -174,6 +174,9 @@
 	A Fig.\ref{fig:heuristiccomp} apresenta uma comparação de diferentes funções heurísticas sendo executadas na interface de testes. É possível visualizar o impacto que diferentes heurísticas tiveram no resultado do algoritmo. Funções que estimam valores acima do real tiveram melhores resultados, variados de acordo com suas implementações. Quanto menor o valor retornado pela heurística for em comparação com seu valor real, pior sera o a performance do algoritmo. Apesar de todos encontrarem caminhos aceitáveis semelhantes, quanto mais células estiverem sendo analisadas mais tempo levara para o algoritmo retornar o resultado final.
 	
 	\subsubsection{Adaptação}
+	O algoritmo é capaz de se adaptar as novas funções de vizinhos de uma célula. Para demonstração do algoritmo criamos uma função que adiciona vizinhos a uma célula baseado em sua cor. Definimos células entre as grades como vizinhas entre si, alem de seus vizinhos originais, portanto conectando os dois grafos, executando o algoritmo definindo um inicio na grade hexagonal e um final na grade quadriculada conseguimos visualizar como o algoritmo se adapta dinamicamente as diferentes propriedades de cada célula.
+	
+	\newpage
 	
 	\begin{figure}[ht]
 		\centering
@@ -181,9 +184,27 @@
 		\caption{Demonstração do algoritmo se adaptando a diferentes propriedades.}.
 		\label{fig:adaptacao}
 	\end{figure}
+	
+	Na Fig.\ref{fig:adaptacao} é possível visualizar o resultado do algoritmo apos a execução. As posições marcadas na cor roxa estão conectadas e permitem com que o algoritmo se mova entre elas. Apesar das representações em grade apresentarem barreiras físicas, elas não existem em um grafo, qualquer célula pode ser conectada a qual quer outra como na Fig.\ref{fig:comparacao}. 
 
 \section{Aplicações}
+	Como um dos algoritmos de busca de menor caminho mais popular , o A* pode ser aplicado a uma grande variedade de softwares e jogos de computador. Apesar de ser um algoritmo de fácil compreensão sua implementação em uma aplicação não é algo trivial \cite{modern}.
+	
+	Em jogos de tempo real, como Age of Empires existe a necessidade de se calcular o menor caminho para diversas unidades ao mesmo tempo em um mundo dinâmico com diferentes obstáculos surgindo e desaparecendo pelo mapa. Apesar de possuírem a primeira vista algoritmos de busca quase perfeitos, muitos jogadores se sentem incomodados e ja tiveram a experiencia de encontrar um grupo de suas unidades presas pelo mapa devido pois o algoritmo utilizado não leva em consideração elementos dinâmicos.
+	
+	Outro jogo de estrategia chamado Civilization V, utiliza grades hexagonais para representar diferentes localidades no mapa como na Fig.\ref{fig:civ5}. Um algoritmo de busca é utilizado para mover unidades para uma certa posição destino através de um grupo de posições validas. Apesar de ser um jogo muito mais moderno que o clássico Age of Empires, Civilization V ainda encontra com problemas para tratar seu ambiente dinâmico através de seu algoritmo de busca.
+	
+	\newpage
+	
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[width=.8\textwidth]{civ5.png}
+		\caption{Jogo Civilization V \cite{modern}.}.
+		\label{fig:civ5}
+	\end{figure}
 
+	Outras aplicações envolvem o uso em aplicativos de GPS para lidar com o mundo real, o mundo em que vivemos muda o tempo todo e os aplicativos de hoje em dia devem ser capazes de adaptar o caminho calculado de acordo com as novas situações que lhe são apresentadas. Utilizando outras técnicas de otimização em combinação com o método sugerido aplicativos poderiam manter em cada cruzamento dados sobre o transito a frente, assim podendo adaptar o caminho conforme for necessário.
+	
 \section{Conclusões}
 		
 \iffalse
