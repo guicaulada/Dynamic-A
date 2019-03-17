@@ -10,7 +10,7 @@
      
 \sloppy
 
-\title{A* para qualquer configuração de vizinhos}
+\title{Dynamic-A: A* para qualquer configuração de vizinhos}
 
 \author{Guilherme Caulada\inst{1}, Pedro Cacique\inst{1} }
 
@@ -26,26 +26,19 @@
 \maketitle
 
 \begin{abstract}
-The A* algorithm is the most used in the game and robotics industry, although it is
-one of the best path finding algorithms out there, the preprocessing necessary in its
-original implementation makes it hard to execute this algorithm in a dynamic environment.
-To address that issue, this paper explores the possibility of making A* more flexible and
-dynamic, so it can adapt to the terrain and other dynamic objects that can be added to the map.
+	The quest for the shortest path is one of the most frustrating problems for the gaming industry. There are several implementations of algorithms that solve this problem, such as Dijkstra's, bread first search, or depth first search, however the A* algorithm is the one that has the best solution for this type of problem. Since its creation this algorithm has received attention from researchers and developers who have created a large list of modifications to the algorithm applying different techniques to improve it. This article describes a modification to the algorithm that seeks to make it more flexible, so that it is able to handle dynamic objects during the calculation of the smallest path. At the beginning you will be presented with an overview of the shortest path search algorithms. Then the A* algorithm will be described in detail as the basis for the optimization presented. Finally, a series of situations where this type of algorithm could be used are presented and we come to a conclusion. 
 \end{abstract}
      
 \begin{resumo} 
-O algoritmo A* é o algoritmo de busca mais utilizado na industria de games e robótica,
-entretanto apesar de ser um dos melhores algoritmos para busca de menor caminho, o
-pre-processamento necessário em sua versão original dificulta a sua execução em ambientes
-dinâmicos. Para solucionar este problema este artigo explora a possibilidade de tornar o
-algoritmo A* mais flexível e dinâmico, para que ele se adapte ao terreno e outros objetos
-dinâmicos que podem ser inseridos no mapa.
+	A busca de menor caminho é um dos problemas mais frustrantes para a industria de jogos. Existem diversas implementações de algoritmos que resolvem esse problema, como o Dijkstra, busca em largura, ou busca em profundidade, entretanto o algoritmo A* é o que possui a melhor solução para este tipo de problema. Desde sua criação esse algoritmo recebeu atenção de pesquisadores e desenvolvedores que criaram uma grande lista de modificações para o algoritmo aplicando diferentes técnicas para aprimora-lo. Esse artigo descreve uma modificação para o algoritmo que busca buscando torna-lo mais flexível, de forma que ele seja capaz a tratar objetos dinâmicos durante o calculo de menor caminho. No inicio sera apresentada uma visão geral sobre algoritmos de busca de menor caminho. Em seguida, o algoritmo A* sera descrito em detalhes como base para a optimização apresentada. Finalmente, uma serie de situações aonde este tipo de algoritmo poderia ser utilizado são apresentadas e chegamos a uma conclusão.
 \end{resumo}
 
 \section{Introdução}
-A busca do menor caminho é um dos maiores problemas na industria de jogos e robótica.
-Entre todos os algoritmos desenvolvidos para solucionar este problema o mais popular de todos é o A*. O algoritmo A* tem sido cada vez mais optimizado, varias modificações e outras versões do algoritmo foram surgindo, buscando sempre aumentar sua velocidade e diminuir seu consumo de memoria, sem perder precisão \cite{modern}. Em busca de tornar o
-algoritmo mais flexível e adaptável, este artigo sugere uma técnica de optimização que envolve a definição de tipos para as células do mapa que mudam a forma com que o algoritmo encontra seus vizinhos, adaptando o algoritmo as diferentes propriedades do mapa.
+	A busca do menor caminho geralmente se refere a busca da menor rota entre um ponto inicial, e um ponto final. No nosso dia-a-dia esse tipo de problema aparece em situações mais simples como no transito ou quando vamos fazer compras, e situações mais complicadas, como robôs em uma fabrica ou jogos de computador. Segundo Cui (2011), \nocite{modern} com o crescimento da industria de jogos, o problema da busca de menor caminho tem se tornado cada vez mais popular e frustrante. Jogos em tempo real geralmente possuem personagens que são enviados de um certo ponto do mapa para um diferente ponto para completar uma certa tarefa. O problema mais comum encontrado na busca de menor caminho em jogos de computador é como desviar obstáculos e lidar com diferentes tipos de terreno. As primeiras soluções para busca de menor caminho em jogos de computadores, foram logos ultrapassados pelo crescimento da complexidade dos jogos produzidos pela industria.
+	
+	Devido ao grande sucesso do algoritmo A* muitos desenvolvedores apostam em aumentar sua velocidade para satisfazer as necessidades de seu software. Grandes esforços tem sido feitos nos últimos anos para optimizar esse algoritmo e melhorar sua performance. Exemplos de otimização envolvem novas heurísticas, representações de mapa, estruturas de dados e redução do consumo de memoria.
+	
+	Neste projeto aproximamos o algoritmo A* de forma diferente, introduzindo uma otimização que busca aumentar a flexibilidade do algoritmo sem grandes impactos em sua performance. O método apresentado, chamado de Dynamic-A, move o calculo de heurística e de vizinhos do A* para cada uma de suas células, dessa maneira cada célula pode mudar seus vizinhos de forma dinâmica, durante o processamento do algoritmo. Cada célula possui em si as informações de como o algoritmo A* deve calcular os seus vizinhos, e esta informação so e acessada enquanto esta célula e analisada, portanto cada célula pode modificar seus vizinhos individualmente, dinamicamente, durante o processamento do menor caminho. Dynamic-A não depende do pre-processamento, não introduz nenhum impacto a performance do algoritmo e sempre encontra o menor caminho.
 
 \section{Algoritmos de busca}
 Existem dois tipos de algoritmos de busca de menor caminho, não-direcionados, como a busca em largura ou em profundidade, estes algoritmos não possuem nenhuma heurística, eles correm cegamente pelo mapa e não consideram o custo do movimento para a célula vizinha, ja os algoritmos direcionados como o Dijkstra e o A* tentam escolher a melhor rota para seu destino. Algoritmos direcionados realizam mais iterações do que os não-direcionados, entretanto eles retornam sempre o menor caminho, para qual é dado maior importância. \cite{computer}
