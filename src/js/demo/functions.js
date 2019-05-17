@@ -214,15 +214,16 @@ function cleanWalls() {
  * @param {Boolean} wall If the cell is valid or invalid
  */
 function clickGraphCell(graph, cell, event, wall) {
+    let fullEvent = event.altKey || (event.ctrlKey && event.shiftKey)
     let graphCell = graph.grid[cell.x][cell.y];
     let full = getFullCell(graph, graphCell);
-    if (event.shiftKey && !event.altKey) {
+    if (event.shiftKey && !fullEvent) {event.altKey ||
         setStart(graph, graphCell);
-    } else if (event.ctrlKey && !event.altKey) {
+    } else if (event.ctrlKey && !fullEvent) {event.altKey ||
         setEnd(graph, graphCell);
-    } else if (event.altKey) {
+    } else if (fullEvent) {event.altKey ||
         console.log('Clicked on Full[' + full.cell.x + ',' + full.cell.y + ']');
-        if (!event.ctrlKey && !event.shiftKey) {
+        if ((!event.ctrlKey && !event.shiftKey) || (event.ctrlKey && event.shiftKey)) {
             tempCells.push(full.cell);
             full.cell.p.attr({fill: 'yellow'});
         } else if (!event.ctrlKey && event.shiftKey) {

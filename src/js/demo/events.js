@@ -179,10 +179,11 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.addEventListener('keyup', (event) => {
+    console.log(event)
     let ret = tempCells.slice();
     let color = '#' + Math.floor(Math.random() * 16000000).toString(16);
     connectedCells[color] = ret;
-    if (event.key == 'Alt') {
+    if (event.key == 'Alt' || (event.key = 'Control' && event.shiftKey) || (event.key = 'Shift' && event.ctrlKey)) {
         for (let cell of connectedCells[color]) {
             if (!cell.modded) {
                 cell.modded = true;
