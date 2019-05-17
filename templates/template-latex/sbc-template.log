@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.8.8)  17 MAR 2019 19:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6745 64-bit) (preloaded format=pdflatex 2018.8.8)  17 MAY 2019 10:37
 entering extended mode
 **./sbc-template.tex
 (sbc-template.tex
@@ -111,19 +111,19 @@ File: latin1.def 2018/04/06 v1.3b Input encoding file
 )) (sbc-template.aux)
 \openout1 = `sbc-template.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 21.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -224,122 +224,140 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <16> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 23.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 23.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 26.
+(Font)              <12> on input line 23.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 26.
+(Font)              <8> on input line 23.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 26.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 26.
+(Font)              <6> on input line 23.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 23.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1pcr.fd"
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (18.06645pt too wide) in paragraph at lines 26--26
+Overfull \hbox (18.06645pt too wide) in paragraph at lines 23--23
  [][] 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 28.
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 25.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <13> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 33.
 [1
 
 {C:/Users/guist/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \hbox (1.24408pt too wide) in paragraph at lines 36--37
+\OT1/ptm/m/n/12 au-men-tar sua ve-loci-dade para sat-is-fazer as ne-ces-si-dade
+s de seu soft-ware. Grandes esfor[]os
+ []
+
 <Astar101.png, id=11, 451.6875pt x 301.125pt>
 File: Astar101.png Graphic file (type png)
 <use Astar101.png>
 Package pdftex.def Info: Astar101.png  used on input line 48.
 (pdftex.def)             Requested size: 341.43437pt x 227.63515pt.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 49.
-
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 50.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 49.
- [2 <./Astar101.png>]
-<astar.png, id=18, 328.22626pt x 246.1697pt>
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 50.
+ [2]
+Overfull \hbox (2.136pt too wide) in paragraph at lines 58--59
+[]\OT1/ptm/m/n/12 O A* pos-sui di-ver-sas pro-priedades que foram provadas por 
+Hart, Nils-son e Raphael
+ []
+
+[3 <./Astar101.png>]
+<astar.png, id=21, 328.22626pt x 246.1697pt>
 File: astar.png Graphic file (type png)
 <use astar.png>
-Package pdftex.def Info: astar.png  used on input line 59.
+Package pdftex.def Info: astar.png  used on input line 62.
 (pdftex.def)             Requested size: 256.07741pt x 192.06041pt.
-[3 <./astar.png>]
-<Five-ways.png, id=23, 661.47125pt x 472.76625pt>
+<Five-ways.png, id=22, 661.47125pt x 472.76625pt>
 File: Five-ways.png Graphic file (type png)
 <use Five-ways.png>
-Package pdftex.def Info: Five-ways.png  used on input line 75.
+Package pdftex.def Info: Five-ways.png  used on input line 80.
 (pdftex.def)             Requested size: 256.07741pt x 183.0219pt.
- [4 <./Five-ways.png>]
-<heuristics.png, id=28, 318.43968pt x 420.82219pt>
+ [4 <./astar.png>] [5 <./Five-ways.png>]
+<heuristics.png, id=31, 318.43968pt x 420.82219pt>
 File: heuristics.png Graphic file (type png)
 <use heuristics.png>
-Package pdftex.def Info: heuristics.png  used on input line 87.
+Package pdftex.def Info: heuristics.png  used on input line 95.
 (pdftex.def)             Requested size: 213.39568pt x 282.00076pt.
- [5 <./heuristics.png>]
-<comparacao.png, id=33, 490.83376pt x 255.95625pt>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./heuristics.png>]
+<comparacao.png, id=36, 490.83376pt x 255.95625pt>
 File: comparacao.png Graphic file (type png)
 <use comparacao.png>
-Package pdftex.def Info: comparacao.png  used on input line 110.
+Package pdftex.def Info: comparacao.png  used on input line 120.
 (pdftex.def)             Requested size: 298.75264pt x 155.7972pt.
-<heap.png, id=34, 822.07124pt x 237.13594pt>
+ [7 <./comparacao.png>]
+<heap.png, id=41, 822.07124pt x 237.13594pt>
 File: heap.png Graphic file (type png)
 <use heap.png>
-Package pdftex.def Info: heap.png  used on input line 121.
+Package pdftex.def Info: heap.png  used on input line 131.
 (pdftex.def)             Requested size: 426.79135pt x 123.11237pt.
- [6 <./comparacao.png>] [7 <./heap.png>]
-<interface.png, id=43, 1432.60219pt x 733.99219pt>
+ [8 <./heap.png>]
+<interface.png, id=46, 1432.60219pt x 733.99219pt>
 File: interface.png Graphic file (type png)
 <use interface.png>
-Package pdftex.def Info: interface.png  used on input line 141.
+Package pdftex.def Info: interface.png  used on input line 153.
 (pdftex.def)             Requested size: 341.43437pt x 174.92973pt.
- [8 <./interface.png (PNG copy)>]
 <propriedades.png, id=47, 1304.62407pt x 603.0028pt>
 File: propriedades.png Graphic file (type png)
 <use propriedades.png>
-Package pdftex.def Info: propriedades.png  used on input line 155.
+Package pdftex.def Info: propriedades.png  used on input line 165.
 (pdftex.def)             Requested size: 341.43437pt x 157.80754pt.
- [9 <./propriedades.png>]
-<heuristiccomp.png, id=52, 2631.8325pt x 1352.05125pt>
+ [9 <./interface.png (PNG copy)>] [10 <./propriedades.png>]
+<heuristiccomp.png, id=55, 2631.8325pt x 1352.05125pt>
 File: heuristiccomp.png Graphic file (type png)
 <use heuristiccomp.png>
-Package pdftex.def Info: heuristiccomp.png  used on input line 169.
+Package pdftex.def Info: heuristiccomp.png  used on input line 179.
 (pdftex.def)             Requested size: 426.79135pt x 219.24153pt.
- [10 <./heuristiccomp.png>]
-<adaptacao.png, id=57, 1304.62407pt x 603.0028pt>
+ [11 <./heuristiccomp.png>]
+<adaptacao.png, id=60, 1304.62407pt x 603.0028pt>
 File: adaptacao.png Graphic file (type png)
 <use adaptacao.png>
-Package pdftex.def Info: adaptacao.png  used on input line 183.
+Package pdftex.def Info: adaptacao.png  used on input line 193.
 (pdftex.def)             Requested size: 341.43437pt x 157.80754pt.
- [11 <./adaptacao.png>]
-<civ5.png, id=62, 666.99188pt x 286.06876pt>
+ [12 <./adaptacao.png>]
+<civ5.png, id=65, 666.99188pt x 286.06876pt>
 File: civ5.png Graphic file (type png)
 <use civ5.png>
-Package pdftex.def Info: civ5.png  used on input line 201.
+Package pdftex.def Info: civ5.png  used on input line 211.
 (pdftex.def)             Requested size: 341.43437pt x 146.44313pt.
- (sbc-template.bbl [12 <./civ5.png>]) [13] (sbc-template.aux) ) 
+
+Overfull \hbox (17.252pt too wide) in paragraph at lines 220--221
+\OT1/ptm/m/n/12 tornar o al-go-ritmo mais flex[]vel, pos-si-bil-i-tando o trat
+a-mento de ob-je-tos din[]amicos. Mostrando
+ []
+
+[13 <./civ5.png>] (sbc-template.bbl) [14] (sbc-template.aux) ) 
 Here is how much of TeX's memory you used:
  2710 strings out of 492973
  38670 string characters out of 3135933
- 111252 words of memory out of 3000000
+ 110253 words of memory out of 3000000
  6522 multiletter control sequences out of 15000+200000
  21033 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,28p,1338b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program File
-s/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/cou
-rier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pf
-b><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/tim
-es/utmri8a.pfb>
-Output written on sbc-template.pdf (13 pages, 2228241 bytes).
+ 41i,10n,28p,1035b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files
+/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/cour
+ier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on sbc-template.pdf (14 pages, 2229127 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
+ 98 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
